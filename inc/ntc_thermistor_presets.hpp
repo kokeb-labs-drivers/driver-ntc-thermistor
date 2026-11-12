@@ -9,8 +9,8 @@
  * @details
  * `presets::kTdkNtcg163jf103ft1s` is the worked example of the documentation: a
  * 10 kOhm 0603 chip thermistor with a 39-row table. Its rows are a secondary
- * listing of the vendor's nominal column and are **unverified until the
- * datasheet is supplied** (docs/presets.md, docs/worked-example.md).
+ * listing of the vendor's nominal column and are **unverified**: the
+ * datasheet prints no table (docs/presets.md, docs/worked-example.md).
  * `presets::kGeneric10kB3950` holds the typical values of the common 10 kOhm /
  * 3950 K class: there is no single datasheet for it, so read yours and
  * override. Neither carries a valid window: a `Config` still declares
@@ -36,10 +36,12 @@ namespace ntc_thermistor::presets {
  * @brief The 39 nominal rows of the TDK NTCG163JF103FT1S, -40 to +150 degC in 5
  * degC steps.
  *
- * Source: a secondary listing of the nominal column of the sheet's
- * resistance-temperature table, to be confirmed against the PDF (its sha256
- * goes into `docs/datasheets.yml`). **Unverified until the datasheet is
- * supplied.**
+ * Source: a secondary listing of the nominal column of the vendor's
+ * resistance-temperature table. The datasheet (TDK Rev.3, 2023-05-08, sha256
+ * in `docs/datasheets.yml`) is one page and prints no table: it links a
+ * separate 1 degC step file that could not be fetched. The rows are **not
+ * verified row by row**; they are consistent with the sheet's B values (B25/85
+ * 3435 K, B25/50 3380 K typ.) and range (-40 to +150 degC), checked by a test.
  */
 inline constexpr std::array<TablePoint, 39> kTdkNtcg163jf103ft1sRows{{
     {.resistance_ohm = 188'500, .temperature_mc = -40'000},
@@ -84,9 +86,9 @@ inline constexpr std::array<TablePoint, 39> kTdkNtcg163jf103ft1sRows{{
 }};
 
 /**
- * @brief TDK NTCG163JF103FT1S: R25 10 kOhm, B25/85 3435 K, table mode
- * (**unverified until the datasheet is supplied**). Tolerances 1 % on R25 and 1
- * % on B are the product page's, also unverified.
+ * @brief TDK NTCG163JF103FT1S: R25 10 kOhm +-1 %, B25/85 3435 K +-1 %, table
+ * mode. R25, B and both tolerances are from the datasheet's Electrical
+ * Characteristics (Rev.3, p. 1); the rows are not (see the rows above).
  */
 inline constexpr Curve kTdkNtcg163jf103ft1s{
     .table = kTdkNtcg163jf103ft1sRows,

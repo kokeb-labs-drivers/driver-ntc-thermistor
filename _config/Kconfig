@@ -47,7 +47,7 @@ choice NTC_THERMISTOR_CURVE
       The part is data. Choose a preset, or give R25 and B of your part.
 
 config NTC_THERMISTOR_CURVE_TDK_NTCG163JF103FT1S
-    bool "TDK NTCG163JF103FT1S table (the documented example; its rows are unverified)"
+    bool "TDK NTCG163JF103FT1S table (the documented example; R25 and B are from the sheet, its rows are unverified)"
 
 config NTC_THERMISTOR_CURVE_GENERIC_B3950
     bool "Generic 10 kOhm / B 3950 (typical values, not a datasheet claim)"

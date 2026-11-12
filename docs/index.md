@@ -49,10 +49,10 @@ Arithmetic :   Integers only: ohms, milli-degrees, millivolts, parts per million
 - **A bound on every reading** from the tolerances you declare and one converter step.
 - **Tested without hardware** against a model that shares no code with the driver. See [Testing and CI](testing.md).
 
-!!! warning "Not verified on hardware"
-    The driver is host-tested against a model of the divider and fuzzed; it has not been run on a thermistor. The
-    example preset (a TDK part) is a secondary listing of the vendor's table and is **unverified until the datasheet
-    is supplied**. Nothing generic depends on it. See [Status and limitations](limitations.md).
+    !!! warning "Not verified on hardware" The driver is host-tested against a model of the divider and fuzzed; it has
+    not been run on a thermistor. The example preset (a TDK part) takes R25, B and the tolerances from the vendor's
+    Rev.3 datasheet; its 39 table rows are a secondary listing, **unverified** because that sheet prints no table.
+    Nothing generic depends on it. See [Status and limitations](limitations.md).
 
 ## Datasheet
 
@@ -60,7 +60,7 @@ Arithmetic :   Integers only: ohms, milli-degrees, millivolts, parts per million
 | Document | Revision | Get it |
 | --- | --- | --- |
 | Reference: Beta equation, Steinhart-Hart equation and the voltage divider (Public references n/a) | n/a, n/a | [vendor page](https://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation) |
-| Datasheet: NTCG163JF103FT1S chip NTC thermistor (worked example; unverified until the datasheet is supplied) (TDK unverified) | unverified, unverified | [vendor page](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=NTCG163JF103FT1S) |
+| Datasheet: Chip NTC Thermistor, NTCG series, NTCG163JF103FT1S (datasheet) (TDK none printed) | Rev.3, May 8, 2023 | [PDF](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf) · [vendor page](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf) |
 
 Written against these revisions; the SHA-256 of each file is in [`docs/datasheets.yml`](datasheets.yml). Where each part
 of the driver is in the datasheet: [Datasheet map](datasheet.md).

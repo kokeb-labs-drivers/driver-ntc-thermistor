@@ -35,8 +35,8 @@ driver-ntc-thermistor: C++20 driver for NTC thermistors read through a resistor 
 
 - The driver is generic: its behaviour comes from the beta equation, the Steinhart-Hart equation and the voltage
   divider (document `beta` in `docs/datasheets.yml`), never from one part's datasheet. The one vendor datasheet (`ds`)
-  is the worked example's, and the PDF has not been supplied: every fact from it is marked **unverified until the
-  datasheet is supplied**, no generic claim may depend on it, and the PDF is never committed. `docs/datasheets.yml`
+  is the worked example's (TDK Rev.3, one page, hashed in the file): the values it prints are cited, the 39 table rows it
+  does not print stay marked **unverified**, no generic claim may depend on it, and the PDF is never committed. `docs/datasheets.yml`
   names the exact document (vendor, number, revision, date, `url`, `pdf`, the `sha256` of the PDF) and lists every
   topic the driver takes from it: the datasheet's section name, the printed page, the driver API that implements it and
   the docs pages that explain it. Link the PDF; keep the file itself out of the repository.

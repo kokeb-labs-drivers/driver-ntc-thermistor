@@ -32,7 +32,7 @@ Faults
 all readings within their bounds
 ```
 
-The table part is the example preset, whose rows are unverified until the datasheet is supplied; the host example
+The table part is the example preset, whose rows are unverified (the vendor sheet prints no table); the host example
 uses a simulated part built from the same rows, so it checks the driver, not the data.
 
 The host tests build this folder too and run the example (CTest `ntc_thermistor_host_example`), so CI fails if it
