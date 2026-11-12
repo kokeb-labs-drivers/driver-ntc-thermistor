@@ -2,15 +2,15 @@
 
 An NTC thermistor and its divider as the driver uses them: the two terminals, the package families, the divider, the
 series resistor, the ADC input, self-heating and tolerances. Every number here is general or derived from the beta
-equation; the figures for one part are labelled "worked example" and come from a preset that is **unverified until
-the datasheet is supplied**.
+equation; the figures for one part are labelled "worked example" and come from a preset whose table rows are
+**unverified** (the vendor's sheet prints no table).
 
 <!-- generated: datasheet-refs -->
 ??? abstract "Datasheet sections this page relies on"
 
     - Voltage divider and the series resistor: Public references n/a n/a, Divider, V = V_s R_n / (R_s + R_n), p. 1
     - Self-heating power: Public references n/a n/a, Dissipated power, P = V_s^2 R_n / (R_s + R_n)^2, p. 1
-    - Example part: package, ratings (unverified): TDK unverified unverified, Dimensions, ratings (not read), p. 1
+    - Example part: package and ratings: TDK none printed Rev.3, Dimension and Construction; Electrical Characteristics: power, dissipation, current, voltage, range, [p. 1](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1)
 
     All of them, with the driver API for each: [Datasheet map](datasheet.md).
 <!-- /generated -->
@@ -133,7 +133,7 @@ whole range is the geometric mean:
 Rs = sqrt(R(Tmin) * R(Tmax))
 ```
 
-Worked example (unverified rows): 188.5 kOhm at -40 and 313 Ohm at +150 give 7.7 kOhm; 10 kOhm centres the divider at
+Worked example (rows unverified): 188.5 kOhm at -40 and 313 Ohm at +150 give 7.7 kOhm; 10 kOhm centres the divider at
 25 degrees Celsius instead and is the common choice. Round to the nearest value you can buy and give the driver the
 real value in `series_ohm` (1 to 16 777 216 ohms), with its tolerance in `series_tol_ppm` so the bound includes it.
 
@@ -141,7 +141,7 @@ real value in `series_ohm` (1 to 16 777 216 ohms), with its tolerance in `series
 
 Near a divider's middle one ADC step is about `T^2 / B / (r (1 - r)) / 2^bits` kelvin, with `r` the node's share. It
 is finest where `r` is 0.5 and coarsens toward the ends. Worked example, a 12-bit ADC, 10 kOhm series resistor and the
-example preset (derived from its unverified rows):
+example preset (derived from its rows, which are unverified):
 
 | Temperature (degC) | Resistance (ohm) | Code | One code is (K) |
 | --- | --- | --- | --- |
@@ -176,11 +176,11 @@ below one code even at the hot end.
 ## Self-heating
 
 The divider heats the thermistor: `P = Vs^2 * Rn / (Rs + Rn)^2`, at most `Vs^2 / (4 Rs)`. The rise is `P` divided by
-the part's dissipation constant in your mounting, in milliwatts per kelvin; about 1 mW/K is **typical** for a chip part
-on a board, but yours comes from its datasheet and your assembly. At 3.3 V with 10 kOhm and 10 kOhm that is 272 uW,
-about 0.27 K at 1 mW/K, which is ten ADC steps of the worked example. `SelfHeatingMicrowatts()` computes `P`; the
-driver does not correct for it. To cut it, power the divider from a GPIO only while sampling (`SetBias()`, see
-[Porting](porting.md)), raise `Rs`, or lower the supply.
+the part's dissipation constant in your mounting, in milliwatts per kelvin; about 1 mW/K is typical for a chip part on
+a board (the worked example's sheet gives 1 mW/degC at 25 degrees Celsius), but yours comes from its datasheet and
+your assembly. At 3.3 V with 10 kOhm and 10 kOhm that is 272 uW, about 0.27 K at 1 mW/K, which is ten ADC steps of the
+worked example. `SelfHeatingMicrowatts()` computes `P`; the driver does not correct for it. To cut it, power the
+divider from a GPIO only while sampling (`SetBias()`, see [Porting](porting.md)), raise `Rs`, or lower the supply.
 
 ```cpp title="reference.cpp"
 --8<-- "tests/docs/reference.cpp:self-heating"

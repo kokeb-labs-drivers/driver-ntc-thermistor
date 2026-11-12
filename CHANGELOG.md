@@ -18,8 +18,8 @@ version bump (a minor bump before 1.0).
   - A part is data: a `Curve` that is a table of 2 to 256 rows (interpolated linearly in ln R), Steinhart-Hart
     coefficients (`sh_a_e15`, `sh_b_e15`, `sh_c_e15`, Q16 integer maths, with a mandatory valid window) or R25 and B
     (beta mode, likewise). `tools/ntc_table.py` makes and checks a table from coefficients, R25 and B, or a vendor list.
-    Two presets: a generic 10 kOhm / B 3950 class and a TDK table that is unverified until
-    the datasheet is supplied.
+    Two presets: a generic 10 kOhm / B 3950 class and a TDK table (R25, B and tolerances
+    checked against the vendor's Rev.3 datasheet; the rows are not, as the sheet prints no table).
   - The bound `uncertainty_mc` is a bound on the declared tolerances: R, the series resistor, B (beta and table
     modes), `curve_error_mc` and one converter step.
   - Both divider topologies, ratiometric or with separate supply and reference, open and short margins, averaging with a

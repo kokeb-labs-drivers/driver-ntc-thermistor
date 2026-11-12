@@ -11,12 +11,11 @@
 #   beta  Not a vendor document: the beta equation, the Steinhart-Hart equation and the voltage divider. Everything
 #         generic in the driver (the conversion, the interpolation, the divider, the error bounds) is derived from
 #         these and checked against an independent model in tests/, never against a datasheet.
-#   ds    The worked example only: the datasheet of one part, the TDK NTCG163JF103FT1S, whose resistance table ships
-#         as a preset. The PDF was NOT available when the driver was written, so every value that comes from it is
-#         unverified: the document number, revision and date are not known, the table is a secondary listing that was
-#         never compared with the vendor's sheet, and no sha256 exists. When the owner supplies the PDF: read it, fix this entry (number,
-#         revision, date, url, pdf, sha256), confirm or correct the rows in inc/ntc_thermistor_presets.hpp and the
-#         numbers on docs/worked-example.md, and remove every "unverified until the datasheet is supplied" mark.
+#   ds    The worked example only: the datasheet of one part, the TDK NTCG163JF103FT1S (one page, Rev.3, 8 May
+#         2023, no document number printed). It confirms R25, B25/50, B25/85, the tolerances, the power rating, the
+#         dissipation constant, the current and voltage limits, the operating range and the package. It does NOT
+#         print the resistance table: the sheet links a separate 1 degC step file (rt_sheets/ntcg163jf103ft1s.csv)
+#         that answers 403 to an automated fetch, so the 39 rows of the preset are still unverified.
 #         Nothing generic depends on this document.
 documents:
   - id: beta
@@ -32,20 +31,19 @@ documents:
     sha256: "n/a (a web page, not a file)"
   - id: ds
     vendor: TDK
-    title: NTCG163JF103FT1S chip NTC thermistor (worked example; unverified until the datasheet is supplied)
+    title: Chip NTC Thermistor, NTCG series, NTCG163JF103FT1S (datasheet)
     kind: Datasheet
-    number: "unverified"
-    revision: "unverified"
-    date: "unverified"
-    url: https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=NTCG163JF103FT1S
-    pdf: null
+    number: "none printed"
+    revision: "Rev.3"
+    date: "May 8, 2023"
+    url: https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf
+    pdf: https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf
     page_offset: 0
-    sha256: "unverified: the PDF was not available, so no file was hashed"
+    sha256: "64d2925d33b75da76b13e498fa5e889def95b02ba72059528f05820585284fd4"
 
 # One row per thing the driver takes from a document: the section names and page numbers, the driver API that
 # implements it, and the docs pages that explain it (file names in docs/). Generic rows cite the `beta` reference
-# (page 1: a web page has none). The `ds` rows cite sections by what they hold, not by the sheet's own heading,
-# because the sheet was not read: the page number 1 is a placeholder until it is.
+# (page 1: a web page has none). The `ds` rows cite the sheet's own headings on its only page.
 topics:
   - topic: "Beta equation and the B25/85 pair"
     doc: beta
@@ -71,21 +69,21 @@ topics:
     page: 1
     driver: "`SelfHeatingMicrowatts()`"
     docs: [hardware, api-guide]
-  - topic: "Example part: R-T table (unverified)"
+  - topic: "Example part: R-T table (rows unverified)"
     doc: ds
-    section: "R-T table, -40 to 150 degC (not read)"
+    section: "Electrical Characteristics, 1degC Step Data link (the table itself is not in the PDF)"
     page: 1
     driver: "`presets::kTdkNtcg163jf103ft1sRows`, `kTdkNtcg163jf103ft1s`"
     docs: [presets, worked-example]
-  - topic: "Example part: B, tolerances (unverified)"
+  - topic: "Example part: R25, B and tolerances"
     doc: ds
-    section: "R25, B, tolerances (not read)"
+    section: "Electrical Characteristics: Resistance, B value"
     page: 1
-    driver: "`Curve::b_kelvin`, `r_tol_ppm`, `b_tol_ppm`"
+    driver: "`Curve::r0_ohm`, `b_kelvin`, `b_t2_mc`, `r_tol_ppm`, `b_tol_ppm`"
     docs: [presets, worked-example]
-  - topic: "Example part: package, ratings (unverified)"
+  - topic: "Example part: package and ratings"
     doc: ds
-    section: "Dimensions, ratings (not read)"
+    section: "Dimension and Construction; Electrical Characteristics: power, dissipation, current, voltage, range"
     page: 1
     driver: "`SelfHeatingMicrowatts()` (the dissipation constant is yours to supply)"
     docs: [worked-example, hardware]

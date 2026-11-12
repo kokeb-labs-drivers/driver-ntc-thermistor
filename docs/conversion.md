@@ -148,7 +148,7 @@ include self-heating, the ADC's own gain and offset errors, or a filter that has
 
 ## Beta against a table, the same part
 
-The case for tables, on the worked example (the unverified rows of the example preset against a beta curve with
+The case for tables, on the worked example (the rows of the example preset, unverified, against a beta curve with
 B25/85 = 3435 K, R25 = 10 kOhm; error = beta minus table):
 
 | Temperature (degC) | Table (degC) | Beta (degC) | Beta error (K) |

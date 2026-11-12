@@ -12,11 +12,12 @@ the divider from a GPIO and check the settle time against the filter.
 The ratio convention (`code / 2^bits` against `code / (2^bits - 1)`) is inside the quantisation and pinned by a test; it
 is not verified on hardware.
 
-## The example preset is unverified
+## The example preset's rows are unverified
 
-The TDK NTCG163JF103FT1S table, B value and tolerances are a secondary listing and were not checked against the
-datasheet, whose PDF was not available. See [Presets](presets.md) and [Worked example](worked-example.md). Nothing
-generic depends on it.
+The TDK NTCG163JF103FT1S datasheet (Rev.3, 2023-05-08) confirms R25, B and the tolerances, but it prints no
+resistance table: the table is a separate step file that answers 403 to an automated fetch. The 39 rows are a
+secondary listing, consistent with the sheet's B values, and are not checked row by row. See [Presets](presets.md)
+and [Worked example](worked-example.md). Nothing generic depends on it.
 
 ## What the driver does not do
 

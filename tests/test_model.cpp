@@ -128,6 +128,40 @@ TEST_CASE("The TDK rows imply the B values the vendor lists, within 3 K (a "
   }
 }
 
+TEST_CASE("The TDK preset carries the figures of the datasheet's Electrical Characteristics "
+          "(Rev.3, p. 1) and its rows agree with the sheet's B values") {
+  const ntc_thermistor::Curve& c = ntc_thermistor::presets::kTdkNtcg163jf103ft1s;
+  CHECK_EQ(c.r0_ohm, 10'000U); // resistance at 25 degC: 10 kOhm
+  CHECK_EQ(c.ref_temperature_mc, 25'000);
+  CHECK_EQ(c.r_tol_ppm, 10'000U); // +-1 %
+  CHECK_EQ(c.b_kelvin, 3'435U);   // B25/85: 3435 K
+  CHECK_EQ(c.b_t2_mc, 85'000);
+  CHECK_EQ(c.b_tol_ppm, 10'000U); // +-1 %
+  // Operating temperature -40 to +150 degC: the table spans exactly that range.
+  CHECK_EQ(c.table.front().temperature_mc, -40'000);
+  CHECK_EQ(c.table.back().temperature_mc, 150'000);
+  // The sheet gives B25/85 = 3435 K +-1 % and B25/50 = 3380 K typ.: the rows imply both. (The sheet
+  // prints no table; its 1 degC step data is a separate file that could not be fetched, so the rows
+  // stay unchecked.)
+  const auto& rows = ntc_thermistor_test::TdkRows();
+  const auto find = [&rows](int celsius) {
+    for (const TablePoint& r : rows) {
+      if (r.temperature_mc == celsius * 1000) {
+        return static_cast<Real>(r.resistance_ohm);
+      }
+    }
+    return Real{0};
+  };
+  const Real k25 = 298.15L;
+  const auto implied_b = [&](int celsius) {
+    return std::log(find(25) / find(celsius)) /
+           ((1.0L / k25) - (1.0L / (static_cast<Real>(celsius) + 273.15L)));
+  };
+  CHECK(std::fabs(implied_b(85) - 3435.0L) < 3435.0L * 0.01L);
+  CHECK(std::fabs(implied_b(85) - 3435.0L) < 1.0L);
+  CHECK(std::fabs(implied_b(50) - 3380.0L) < 5.0L);
+}
+
 TEST_CASE("Every part's table is strictly monotone and valid") {
   for (const Part& p : Parts()) {
     if (!p.table_mode) {

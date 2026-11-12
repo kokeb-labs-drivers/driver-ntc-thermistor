@@ -78,7 +78,7 @@ From [`docs/hardware.yml`](docs/hardware.yml); pins, circuits and the block diag
 
 | | |
 | --- | --- |
-| **Parts** | Any NTC thermistor: a table of 2 to 256 rows, Steinhart-Hart A, B, C, or R25 and B; a table generator. Two presets ship as examples; one is **unverified until the datasheet is supplied** |
+| **Parts** | Any NTC thermistor: a table of 2 to 256 rows, Steinhart-Hart A, B, C, or R25 and B; a table generator. Two presets ship as examples; the rows of one are **unverified** (its datasheet prints no table) |
 | **Reads** | A divider into one ADC channel, low side or high side, ratiometric or with a separate reference; 8 to 24 bits |
 | **Returns** | Milli-degrees Celsius, the resistance, the mean code and a bound on the declared tolerances |
 | **Faults** | `OpenCircuit`, `ShortCircuit`, `BelowRange`, `AboveRange`, `Unstable`, `CodeOutOfScale` |
@@ -93,14 +93,14 @@ From [`docs/hardware.yml`](docs/hardware.yml); pins, circuits and the block diag
 | Document | Revision | Get it |
 | --- | --- | --- |
 | Reference: Beta equation, Steinhart-Hart equation and the voltage divider (Public references n/a) | n/a, n/a | [vendor page](https://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation) |
-| Datasheet: NTCG163JF103FT1S chip NTC thermistor (worked example; unverified until the datasheet is supplied) (TDK unverified) | unverified, unverified | [vendor page](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=NTCG163JF103FT1S) |
+| Datasheet: Chip NTC Thermistor, NTCG series, NTCG163JF103FT1S (datasheet) (TDK none printed) | Rev.3, May 8, 2023 | [PDF](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf) · [vendor page](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf) |
 
 Written against these revisions; the SHA-256 of each file is in [`docs/datasheets.yml`](docs/datasheets.yml). Where each
 part of the driver is in the datasheet: [Datasheet map](docs/datasheet.md).
 <!-- /generated -->
 
 The driver is generic and follows the beta and Steinhart-Hart equations; the one vendor datasheet is the worked
-example's and was not available, so it is **unverified until the datasheet is supplied** ([Datasheet
+example's (TDK Rev.3); it prints no resistance table, so the example preset's rows stay **unverified** ([Datasheet
 map](docs/datasheet.md)).
 
 ## Try it on your PC
@@ -251,7 +251,7 @@ The target is `ntc_thermistor::ntc_thermistor` every way, so switching later cha
 | [Hardware](docs/hardware.md) | Choose the series resistor, handle the ADC input, understand self-heating |
 | [Conversion](docs/conversion.md) | Know how a code becomes a temperature, and how accurate each curve is |
 | [Presets](docs/presets.md) | Use or write a part's curve |
-| [Worked example](docs/worked-example.md) | See one part end to end (unverified until its datasheet is supplied) |
+| [Worked example](docs/worked-example.md) | See one part end to end (its table rows are unverified) |
 | [Configuration](docs/configuration.md) | Choose the divider, the sampling and the window |
 | [Porting](docs/porting.md) | Write the port class for your MCU's SDK |
 | [API guide](docs/api-guide.md) | Use each call and handle each error |
