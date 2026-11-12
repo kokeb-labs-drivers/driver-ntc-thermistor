@@ -1012,7 +1012,7 @@
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a> <code>AdcInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a> <code>AdcInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
 <table>
 <thead>
@@ -1025,32 +1025,32 @@
 <tbody>
 <tr>
 <td>Core</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/src/ntc_thermistor.ipp"><code>src/ntc_thermistor.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/src/ntc_thermistor.ipp"><code>src/ntc_thermistor.ipp</code></a></td>
 <td>Lifecycle, sampling, the bias sequence, the port hooks</td>
 </tr>
 <tr>
 <td>Conversion</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></td>
 <td>The pure maths: classification, divider, curve, bound</td>
 </tr>
 <tr>
 <td>Maths</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_math.hpp"><code>inc/ntc_thermistor_math.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_math.hpp"><code>inc/ntc_thermistor_math.hpp</code></a></td>
 <td><code>Ln16()</code>, rounded and saturating integer helpers</td>
 </tr>
 <tr>
 <td>Types</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_types.hpp"><code>inc/ntc_thermistor_types.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_types.hpp"><code>inc/ntc_thermistor_types.hpp</code></a></td>
 <td><code>Error</code>, <code>Result&lt;T&gt;</code>, <code>Curve</code>, <code>Config</code>, <code>Reading</code>, <code>Validate()</code></td>
 </tr>
 <tr>
 <td>Presets</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_presets.hpp"><code>inc/ntc_thermistor_presets.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_presets.hpp"><code>inc/ntc_thermistor_presets.hpp</code></a></td>
 <td>Two example curves, as data; included by nothing in the driver</td>
 </tr>
 <tr>
 <td>Port contract</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></td>
 <td>The CRTP base and the <code>AdcPort</code> concept</td>
 </tr>
 <tr>
@@ -1072,7 +1072,7 @@ time when the inputs are <code>constexpr</code>. <code>NtcThermistor&lt;Port&gt;
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow hands one number to the next stage. Read() takes sample_count codes and their mean (the spread check can stop it as Unstable). The mean code is classified: at or above 2^bits is CodeOutOfScale, a code in the margin at the open rail is OpenCircuit, one in the margin at the short rail is ShortCircuit; which rail is which depends on the divider side. The node ratio gives the thermistor's resistance from the series resistor, in 1/256 ohm. The resistance goes through the curve: a table (a bounded binary search, then linear interpolation in ln R) or Steinhart-Hart (a cubic in ln R) or the beta equation (1/T in Q32), any of them with no floating point and no library. The temperature must lie inside the window; the offset is added last. The uncertainty bound is computed from the same code. The stages are the functions of inc/ntc_thermistor_conversion.hpp.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>ConvertCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>FineOfCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>CurveTemperature()</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/a08203363bbb919be01463e6621831a97b599b2a/docs/diagrams/figures/conversion-pipeline.py"><code>docs/diagrams/figures/conversion-pipeline.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>ConvertCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>FineOfCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>CurveTemperature()</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/docs/diagrams/figures/conversion-pipeline.py"><code>docs/diagrams/figures/conversion-pipeline.py</code></a>.</p>
 </details>
 <h2 id="rules-the-code-keeps">Rules the code keeps<a class="headerlink" href="#rules-the-code-keeps" title="Permanent link">&para;</a></h2>
 <ul>
