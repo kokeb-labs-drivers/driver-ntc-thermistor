@@ -1,0 +1,108 @@
+---
+# The hardware in one file: package, pins, the driver hook of each pin, the block inside and the reference circuits.
+# `kokeb-docs figures` draws the pinout, the package outline, the block diagram and the circuits from it,
+# `kokeb-docs gen` writes the chip card of the README and the tables of docs/hardware.md,
+# `kokeb-docs hardware --check` validates it and `kokeb-docs hardware --kicad-netlist OUT --circuit ID` exports a
+# circuit for a schematic or PCB tool. Schema: docs/chip-diagrams.md in kokeb-labs/ci-tools.
+#
+# THIS FILE DESCRIBES A GENERIC NTC THERMISTOR, not one part. Every fact is general background and is marked
+# `unverified` ("typical, not a datasheet claim"); the citations point at the `beta` reference in docs/datasheets.yml,
+# which is not a vendor document. The package drawn is the 0603 chip family the worked example uses (an EIA size with
+# family-nominal dimensions); the other families are listed under `variants` and have no ordering code.
+#
+# TO ADAPT IT TO YOUR PART (docs/hardware.md has the same recipe):
+#   1. chip              the part's name.
+#   2. package           type, `outline` (the body from the part's drawing) and `variants` (its ordering table).
+#   3. block_diagram     the detail of the NTC block: R25, B or the table.
+#   4. circuits          R1, C1 and the supply of your divider.
+#   5. refs and unverified   point `refs` at your datasheet (document `ds` in docs/datasheets.yml, section and printed
+#                        page) and delete each `unverified` you have confirmed.
+# Keep the pins T1 and T2 and the hooks; then run `kokeb-docs hardware --check`.
+schema: 1
+chip: "NTC thermistor (generic)"
+
+refs:
+  terminals: {doc: beta, section: "Two-terminal resistor; terminals are not polarised", page: 1}
+  families: {doc: beta, section: "Chip and bead NTC families (typical sizes)", page: 1}
+  divider: {doc: beta, section: "Divider, V = V_s R_n / (R_s + R_n)", page: 1}
+  model: {doc: beta, section: "Beta parameter model; Steinhart-Hart equation", page: 1}
+
+package:
+  type: "0603"
+  pins: 2
+  layout: dual
+  sides: {left: [1], right: [2]}
+  ref: families
+  # Family nominals (EIA 0603: about 1.6 x 0.8 x 0.8 mm): not a datasheet claim.
+  outline: {length_mm: 1.6, width_mm: 0.8, height_mm: 0.8, ref: families}
+  # Other families a thermistor is sold in; typical, not a datasheet claim, and none is a part number.
+  variants:
+    - {id: chip0402, type: "0402", pins: 2, size: "about 1.0 x 0.5 mm (family nominal)", note: "typical, not a datasheet claim",
+       ref: families}
+    - {id: chip0805, type: "0805", pins: 2, size: "about 2.0 x 1.25 mm (family nominal)", note: "typical, not a datasheet claim",
+       ref: families}
+    - {id: bead, type: radial-bead, pins: 2, size: "glass bead or epoxy-coated disc on two leads", note: "typical, not a datasheet claim",
+       ref: families}
+
+hooks:
+  - {id: read, call: "ReadRaw()", kind: other, source: inc/ntc_thermistor_adc_interface.hpp, symbol: ReadRaw}
+  - {id: bias, call: "SetBias()", kind: gpio-out, source: inc/ntc_thermistor.hpp, symbol: SetBias}
+
+pins:
+  - {number: 1, name: T1, type: analog, domain: VDD,
+     function: "One terminal, not polarised: see the two circuits for the wiring",
+     hook: read, ref: terminals,
+     unverified: "not polarised; T1 and T2 are this driver's names"}
+  - {number: 2, name: T2, type: analog, domain: VDD,
+     function: "The other terminal, not polarised: see the two circuits for the wiring", ref: terminals,
+     unverified: "not polarised; T1 and T2 are this driver's names"}
+
+block_diagram:
+  ref: model
+  blocks:
+    - {id: ntc, label: "NTC element R(T)", detail: "R25 and B, or a table", at: [0, 0], tone: amber, pins: [T1, T2],
+       unverified: "a generic element: the resistance law is the beta equation or the part's table"}
+
+circuits:
+  - id: divider
+    title: Low-side divider
+    description: >-
+      The thermistor between the ADC input and ground, a series resistor to the supply that is also the ADC
+      reference. The driver reads the node with ReadRaw(); the optional capacitor filters the node.
+    ref: divider
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: ADC_IN, label: ADC input}
+          - VREF
+          - GND
+      - {id: R1, kind: resistor, value: 10 kΩ, ref: divider, unverified: "example value: pick R1 with the rule on the Hardware page"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: divider, unverified: "example value, optional filter"}
+    nets:
+      - {name: "+3V3", kind: supply, nodes: [R1.1, U2.VREF]}
+      - {name: NODE, nodes: [R1.2, U1.T1, C1.1, U2.ADC_IN]}
+      - {name: GND, kind: ground, nodes: [U1.T2, C1.2, U2.GND]}
+  - id: divider-high
+    title: High-side divider
+    description: >-
+      The thermistor between the supply and the ADC input, the series resistor to ground: the node rises as the
+      thermistor heats. Set Config::topology to NtcHighSide.
+    ref: divider
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: ADC_IN, label: ADC input}
+          - VREF
+          - GND
+      - {id: R1, kind: resistor, value: 10 kΩ, ref: divider, unverified: "example value: pick R1 with the rule on the Hardware page"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: divider, unverified: "example value, optional filter"}
+    nets:
+      - {name: "+3V3", kind: supply, nodes: [U1.T1, U2.VREF]}
+      - {name: NODE, nodes: [U1.T2, R1.1, C1.1, U2.ADC_IN]}
+      - {name: GND, kind: ground, nodes: [R1.2, C1.2, U2.GND]}

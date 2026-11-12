@@ -1,0 +1,82 @@
+# Kconfig for the NTC thermistor driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)). The values reach the code only
+# through inc/ntc_thermistor_kconfig.hpp.
+menuconfig NTC_THERMISTOR
+    bool "NTC thermistor"
+    default y
+    help
+      Defaults for ntc_thermistor::KconfigDefaults(). Outside ESP-IDF they come from Config{} (no part).
+
+if NTC_THERMISTOR
+
+config NTC_THERMISTOR_ADC_CHANNEL
+    int "ADC channel of the divider node"
+    range 0 15
+    default 0
+
+config NTC_THERMISTOR_ADC_BITS
+    int "ADC resolution of the raw count the port returns, in bits"
+    range 8 24
+    default 12
+    help
+      The width of the converter your port reads. The ESP32 on-chip ADC converts at 12 bits (ESP32-C6), 9 to 12
+      (ESP32) or 13 (ESP32-S2): the example port refuses a width outside 9 to 13. Up to 24 is for a port that
+      reads an external converter.
+
+config NTC_THERMISTOR_SERIES_OHM
+    int "Series resistor of the divider, in ohms"
+    range 1 16777216
+    default 10000
+
+config NTC_THERMISTOR_HIGH_SIDE
+    bool "The thermistor is on the supply side of the divider"
+    default n
+    help
+      Off: supply, series resistor, node, thermistor, ground. On: supply, thermistor, node, series resistor,
+      ground.
+
+config NTC_THERMISTOR_SAMPLES
+    int "Conversions averaged per reading"
+    range 1 16
+    default 4
+
+choice NTC_THERMISTOR_CURVE
+    prompt "Thermistor curve"
+    default NTC_THERMISTOR_CURVE_GENERIC_B3950
+    help
+      The part is data. Choose a preset, or give R25 and B of your part.
+
+config NTC_THERMISTOR_CURVE_TDK_NTCG163JF103FT1S
+    bool "TDK NTCG163JF103FT1S table (the documented example; its rows are unverified)"
+
+config NTC_THERMISTOR_CURVE_GENERIC_B3950
+    bool "Generic 10 kOhm / B 3950 (typical values, not a datasheet claim)"
+
+config NTC_THERMISTOR_CURVE_R25_B
+    bool "R25 and B of my part"
+
+endchoice
+
+config NTC_THERMISTOR_R25_OHM
+    int "R25 of the part, in ohms"
+    depends on NTC_THERMISTOR_CURVE_R25_B
+    range 1 10000000
+    default 10000
+
+config NTC_THERMISTOR_B_KELVIN
+    int "B of the part, in kelvin"
+    depends on NTC_THERMISTOR_CURVE_R25_B
+    range 1000 8000
+    default 3950
+
+config NTC_THERMISTOR_MIN_TEMPERATURE_C
+    int "Lowest valid temperature, in degrees Celsius (mandatory for beta curves)"
+    range -273 1000
+    default -40
+
+config NTC_THERMISTOR_MAX_TEMPERATURE_C
+    int "Highest valid temperature, in degrees Celsius (mandatory for beta curves)"
+    range -273 1000
+    default 125
+
+endif

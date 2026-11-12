@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="493" viewBox="0 0 888 493" role="img" aria-labelledby="chip-circuit-divider-title chip-circuit-divider-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-circuit-divider-title">NTC thermistor (generic): Low-side divider</title>
+<desc id="chip-circuit-divider-desc">Schematic of the NTC thermistor (generic) low-side divider: the chip with U2 MCU, R1 resistor 10 kΩ, C1 capacitor 100 nF; the MCU wires carry the port hooks ReadRaw().</desc>
+<rect x="0.5" y="0.5" width="887" height="492" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">NTC thermistor (generic): Low-side divider</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">The thermistor between the ADC input and ground, a series resistor to the supply that is also the ADC</text>
+<text x="32" y="125.5" font-size="15" fill="#9AA6B5">reference. The driver reads the node with ReadRaw(); the optional capacitor filters the node. Above each</text>
+<text x="32" y="147.3" font-size="15" fill="#9AA6B5">MCU wire: the port hook that drives it. Datasheet: Divider, V = V_s R_n / (R_s + R_n), p. 1.</text>
+<rect x="32" y="163.3" width="824" height="1" fill="#252F3C"/>
+<path d="M816 301.3 L840 301.3" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M840 301.3 L840 317.3" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M216 301.3 L472 301.3" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M328 277.3 L328 301.3" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M392 301.3 L392 325.3" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<rect x="496" y="285.3" width="296" height="80" rx="4" fill="#151C26" stroke="#F4B942" stroke-width="1.8"/>
+<path d="M496 301.3 L472 301.3" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M792 301.3 L816 301.3" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="32" y="253.3" width="160" height="80" rx="4" fill="#18202B" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M192 301.3 L216 301.3" fill="none" stroke="#A78BFA" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M168 253.3 L168 229.3" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M168 333.3 L168 357.3" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M168 229.3 L168 218.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M159 218.3 L177 218.3" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M168 357.3 L168 365.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M160 365.3 L176 365.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M163 368.8 L173 368.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M166 372.3 L170 372.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M328 229.3 L328 242.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M328 264.3 L328 277.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M323 242.3 L323 264.3 L333 264.3 L333 242.3 Z" fill="#151C26" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M328 229.3 L328 218.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M319 218.3 L337 218.3" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M392 325.3 L392 345.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M392 352.8 L392 373.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M382 345.8 L402 345.8" fill="none" stroke="#E8EDF3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M382 352.8 L402 352.8" fill="none" stroke="#E8EDF3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M392 373.3 L392 381.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M384 381.3 L400 381.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M387 384.8 L397 384.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M390 388.3 L394 388.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M840 317.3 L840 325.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M832 325.3 L848 325.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M835 328.8 L845 328.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M838 332.3 L842 332.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="502" y="305.8" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">T1</text>
+<text x="492" y="297.3" font-size="11" text-anchor="end" fill="#9AA6B5">1</text>
+<text x="786" y="305.8" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">T2</text>
+<text x="796" y="297.3" font-size="11" fill="#9AA6B5">2</text>
+<text x="644" y="322.3" font-size="15" font-weight="700" text-anchor="middle" fill="#F8D27A">NTC thermistor (generic)</text>
+<text x="644" y="340.3" font-size="12" text-anchor="middle" fill="#9AA6B5">U1</text>
+<text x="186" y="305.8" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">ADC input</text>
+<text x="168" y="269.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VREF</text>
+<text x="168" y="326.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">GND</text>
+<text x="44" y="275.3" font-size="15" font-weight="700" fill="#E8EDF3">MCU</text>
+<text x="44" y="293.3" font-size="12" fill="#9AA6B5">U2</text>
+<text x="168" y="212.3" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">+3V3</text>
+<text x="224" y="295.3" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#DDD6FE">ReadRaw()</text>
+<text x="338" y="250.3" font-size="12" font-weight="700" fill="#E8EDF3">R1</text>
+<text x="338" y="264.7" font-size="12" fill="#9AA6B5">10 kΩ *</text>
+<text x="328" y="212.3" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">+3V3</text>
+<text x="407" y="346.3" font-size="12" font-weight="700" fill="#E8EDF3">C1</text>
+<text x="407" y="360.7" font-size="12" fill="#9AA6B5">100 nF *</text>
+<circle cx="328" cy="301.3" r="3.2" fill="#D2DAE4"/>
+<circle cx="392" cy="301.3" r="3.2" fill="#D2DAE4"/>
+<text x="32" y="410.3" font-size="12.5" fill="#9AA6B5">* Not confirmed in the datasheet: R1 10 kΩ: example value: pick R1 with the rule on the Hardware page; C1 100 nF: example value,</text>
+<text x="32" y="428.3" font-size="12.5" fill="#9AA6B5">optional filter.</text>
+<rect x="32" y="447.4" width="14" height="14" rx="4" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<text x="54" y="459.1" font-size="12.5" fill="#9AA6B5">other hook</text>
+</svg>

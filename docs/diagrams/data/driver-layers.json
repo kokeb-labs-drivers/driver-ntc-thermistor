@@ -1,0 +1,21 @@
+{
+  "name": "ntc_thermistor",
+  "cls": "NtcThermistor",
+  "calls": [
+    "EnsureInitialized",
+    "Read",
+    "ReadResistance",
+    "ReadRawCode",
+    "SetConfig"
+  ],
+  "sources": [
+    "inc/ntc_thermistor.hpp:public calls",
+    "inc/ntc_thermistor_adc_interface.hpp:AdcInterface"
+  ],
+  "bus": "ADC",
+  "base": "AdcInterface",
+  "hooks": [
+    "EnsureInitialized",
+    "ReadRaw"
+  ]
+}

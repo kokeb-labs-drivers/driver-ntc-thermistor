@@ -1,0 +1,7 @@
+{
+  "sources": [
+    "inc/ntc_thermistor_conversion.hpp:ConvertCode()",
+    "inc/ntc_thermistor_conversion.hpp:FineOfCode()",
+    "inc/ntc_thermistor_conversion.hpp:CurveTemperature()"
+  ]
+}
