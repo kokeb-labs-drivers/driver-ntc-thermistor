@@ -763,10 +763,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-example-preset-is-unverified" class="md-nav__link">
+  <a href="#the-example-presets-rows-are-unverified" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The example preset is unverified
+        The example preset's rows are unverified
       
     </span>
   </a>
@@ -1011,10 +1011,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-example-preset-is-unverified" class="md-nav__link">
+  <a href="#the-example-presets-rows-are-unverified" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The example preset is unverified
+        The example preset's rows are unverified
       
     </span>
   </a>
@@ -1099,10 +1099,11 @@ thermometer and compare with the bound; cut the thermistor and short it and see 
 the divider from a GPIO and check the settle time against the filter.</p>
 <p>The ratio convention (<code>code / 2^bits</code> against <code>code / (2^bits - 1)</code>) is inside the quantisation and pinned by a test; it
 is not verified on hardware.</p>
-<h2 id="the-example-preset-is-unverified">The example preset is unverified<a class="headerlink" href="#the-example-preset-is-unverified" title="Permanent link">&para;</a></h2>
-<p>The TDK NTCG163JF103FT1S table, B value and tolerances are a secondary listing and were not checked against the
-datasheet, whose PDF was not available. See <a href="../presets/">Presets</a> and <a href="../worked-example/">Worked example</a>. Nothing
-generic depends on it.</p>
+<h2 id="the-example-presets-rows-are-unverified">The example preset's rows are unverified<a class="headerlink" href="#the-example-presets-rows-are-unverified" title="Permanent link">&para;</a></h2>
+<p>The TDK NTCG163JF103FT1S datasheet (Rev.3, 2023-05-08) confirms R25, B and the tolerances, but it prints no
+resistance table: the table is a separate step file that answers 403 to an automated fetch. The 39 rows are a
+secondary listing, consistent with the sheet's B values, and are not checked row by row. See <a href="../presets/">Presets</a>
+and <a href="../worked-example/">Worked example</a>. Nothing generic depends on it.</p>
 <h2 id="what-the-driver-does-not-do">What the driver does not do<a class="headerlink" href="#what-the-driver-does-not-do" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Floating point and libm.</strong> Everything is integer. Steinhart-Hart is a run-time mode (Q16 arithmetic, a cubic and an

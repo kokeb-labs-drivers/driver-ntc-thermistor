@@ -1233,7 +1233,7 @@
 <h1 id="porting">Porting<a class="headerlink" href="#porting" title="Permanent link">&para;</a></h1>
 <p>Run the driver on a new MCU by writing one class: the port.</p>
 <p>The driver calls hooks on a class you derive from <code>ntc_thermistor::AdcInterface&lt;Self&gt;</code> (in
-<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>). The base declares no hook; the
+<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>). The base declares no hook; the
 driver template is constrained by the <code>ntc_thermistor::AdcPort</code> concept, so a missing or misdeclared hook is a
 compile error with a message that names it.</p>
 <h2 id="what-you-implement">What you implement<a class="headerlink" href="#what-you-implement" title="Permanent link">&para;</a></h2>
@@ -1356,7 +1356,7 @@ full scale and declare that full scale (see <a href="../reference-and-supplies/"
 </span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="p">}</span>
 </span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">};</span>
 </span></code></pre></div>
-<p>The ESP32 example, <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/examples/esp32/main/esp32_ntc_thermistor_port.hpp"><code>esp32_ntc_thermistor_port.hpp</code></a>, uses the
+<p>The ESP32 example, <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/examples/esp32/main/esp32_ntc_thermistor_port.hpp"><code>esp32_ntc_thermistor_port.hpp</code></a>, uses the
 one-shot ADC and an optional GPIO.</p>
 <h2 id="describing-your-part-and-your-hardware">Describing your part and your hardware<a class="headerlink" href="#describing-your-part-and-your-hardware" title="Permanent link">&para;</a></h2>
 <p>Porting also covers the documentation of a board: <a href="../hardware/">Hardware</a> has the recipe for adapting <code>hardware.yml</code>

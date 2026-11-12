@@ -1049,19 +1049,21 @@
 <p>The driver is generic: it follows the beta and Steinhart-Hart equations and the divider, not one datasheet. This page
 says which documents stand behind it and where each part of the driver is described in them, so you can check any
 behaviour against the source.</p>
-<p>The one vendor datasheet is the worked example's, and it was <strong>not available</strong> when the driver was written: every
-row that cites it is <strong>unverified until the datasheet is supplied</strong>, its number, revision and date are not known, and
-no file was hashed. Its section names and the page number 1 in those rows are placeholders, not the sheet's own.
-Nothing generic depends on it. <a href="../worked-example/">Worked example</a> lists the steps that confirm it.</p>
+<p>The one vendor datasheet is the worked example's: TDK, one page, Rev.3 of 8 May 2023, no document number printed. It
+confirms R25, B, the tolerances, the ratings and the range; it prints <strong>no resistance table</strong> (a separate step file,
+403 to an automated fetch), so the 39 rows of the preset stay <strong>unverified</strong>. Nothing generic depends on it.
+<a href="../worked-example/">Worked example</a> says what is left to confirm.</p>
 <!-- generated: datasheet-map -->
 <ul>
 <li><strong>Reference: Beta equation, Steinhart-Hart equation and the voltage divider</strong>, Public references n/a, revision n/a
   (n/a). Get it from the <a href="https://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation">vendor page</a>.
   SHA-256 of the file used: <code>n/a (a web page, not a file)</code>.</li>
-<li><strong>Datasheet: NTCG163JF103FT1S chip NTC thermistor (worked example; unverified until the datasheet is supplied)</strong>, TDK
-  unverified, revision unverified (unverified). Get it from the <a href="https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=NTCG163JF103FT1S">vendor
-  page</a>.
-  SHA-256 of the file used: <code>unverified: the PDF was not available, so no file was hashed</code>.</li>
+<li><strong>Datasheet: Chip NTC Thermistor, NTCG series, NTCG163JF103FT1S (datasheet)</strong>, TDK none printed, revision Rev.3 (May
+  8, 2023). Get it from the <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf">vendor
+  page</a>
+  or as a
+  <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf">PDF</a>.
+  SHA-256 of the file used: <code>64d2925d33b75da76b13e498fa5e889def95b02ba72059528f05820585284fd4</code>.</li>
 </ul>
 <table>
 <thead>
@@ -1103,23 +1105,23 @@ Nothing generic depends on it. <a href="../worked-example/">Worked example</a> l
 <td><a href="../hardware/">Hardware</a>, <a href="../api-guide/">API guide</a></td>
 </tr>
 <tr>
-<td>Example part: R-T table (unverified)</td>
-<td>unverified: R-T table, -40 to 150 degC (not read)</td>
-<td>p. 1</td>
+<td>Example part: R-T table (rows unverified)</td>
+<td>none printed: Electrical Characteristics, 1degC Step Data link (the table itself is not in the PDF)</td>
+<td><a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></td>
 <td><code>presets::kTdkNtcg163jf103ft1sRows</code>, <code>kTdkNtcg163jf103ft1s</code></td>
 <td><a href="../presets/">Presets</a>, <a href="../worked-example/">Worked example: a 10 kOhm chip thermistor</a></td>
 </tr>
 <tr>
-<td>Example part: B, tolerances (unverified)</td>
-<td>unverified: R25, B, tolerances (not read)</td>
-<td>p. 1</td>
-<td><code>Curve::b_kelvin</code>, <code>r_tol_ppm</code>, <code>b_tol_ppm</code></td>
+<td>Example part: R25, B and tolerances</td>
+<td>none printed: Electrical Characteristics: Resistance, B value</td>
+<td><a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></td>
+<td><code>Curve::r0_ohm</code>, <code>b_kelvin</code>, <code>b_t2_mc</code>, <code>r_tol_ppm</code>, <code>b_tol_ppm</code></td>
 <td><a href="../presets/">Presets</a>, <a href="../worked-example/">Worked example: a 10 kOhm chip thermistor</a></td>
 </tr>
 <tr>
-<td>Example part: package, ratings (unverified)</td>
-<td>unverified: Dimensions, ratings (not read)</td>
-<td>p. 1</td>
+<td>Example part: package and ratings</td>
+<td>none printed: Dimension and Construction; Electrical Characteristics: power, dissipation, current, voltage, range</td>
+<td><a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></td>
 <td><code>SelfHeatingMicrowatts()</code> (the dissipation constant is yours to supply)</td>
 <td><a href="../worked-example/">Worked example: a 10 kOhm chip thermistor</a>, <a href="../hardware/">Hardware</a></td>
 </tr>

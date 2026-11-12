@@ -1095,8 +1095,8 @@ affected API.</p>
 <li>A part is data: a <code>Curve</code> that is a table of 2 to 256 rows (interpolated linearly in ln R), Steinhart-Hart
     coefficients (<code>sh_a_e15</code>, <code>sh_b_e15</code>, <code>sh_c_e15</code>, Q16 integer maths, with a mandatory valid window) or R25 and B
     (beta mode, likewise). <code>tools/ntc_table.py</code> makes and checks a table from coefficients, R25 and B, or a vendor list.
-    Two presets: a generic 10 kOhm / B 3950 class and a TDK table that is unverified until
-    the datasheet is supplied.</li>
+    Two presets: a generic 10 kOhm / B 3950 class and a TDK table (R25, B and tolerances
+    checked against the vendor's Rev.3 datasheet; the rows are not, as the sheet prints no table).</li>
 <li>The bound <code>uncertainty_mc</code> is a bound on the declared tolerances: R, the series resistor, B (beta and table
     modes), <code>curve_error_mc</code> and one converter step.</li>
 <li>Both divider topologies, ratiometric or with separate supply and reference, open and short margins, averaging with a

@@ -1215,15 +1215,15 @@
 <h1 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h1>
 <p>An NTC thermistor and its divider as the driver uses them: the two terminals, the package families, the divider, the
 series resistor, the ADC input, self-heating and tolerances. Every number here is general or derived from the beta
-equation; the figures for one part are labelled "worked example" and come from a preset that is <strong>unverified until
-the datasheet is supplied</strong>.</p>
+equation; the figures for one part are labelled "worked example" and come from a preset whose table rows are
+<strong>unverified</strong> (the vendor's sheet prints no table).</p>
 <!-- generated: datasheet-refs -->
 <details class="abstract">
 <summary>Datasheet sections this page relies on</summary>
 <ul>
 <li>Voltage divider and the series resistor: Public references n/a n/a, Divider, V = V_s R_n / (R_s + R_n), p. 1</li>
 <li>Self-heating power: Public references n/a n/a, Dissipated power, P = V_s^2 R_n / (R_s + R_n)^2, p. 1</li>
-<li>Example part: package, ratings (unverified): TDK unverified unverified, Dimensions, ratings (not read), p. 1</li>
+<li>Example part: package and ratings: TDK none printed Rev.3, Dimension and Construction; Electrical Characteristics: power, dissipation, current, voltage, range, <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></li>
 </ul>
 <p>All of them, with the driver API for each: <a href="../datasheet/">Datasheet map</a>.</p>
 </details>
@@ -1272,7 +1272,7 @@ diagram and the two circuits below are drawn from <a href="../hardware.yml"><cod
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic) seen from the top, in its 0603 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <figure class="kb-figure">
 <img src="../diagrams/chip-outline.svg#only-light" alt="Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins." width="760" height="749" loading="lazy"><img src="../diagrams/chip-outline.dark.svg#only-dark" alt="Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins." width="760" height="749" loading="lazy">
@@ -1282,7 +1282,7 @@ diagram and the two circuits below are drawn from <a href="../hardware.yml"><cod
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic) package seen from the top and, when the height is known, from the side, drawn to scale: 1.6 x 0.8 x 0.8 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-pins -->
 <p>0603, 2 pins (Chip and bead NTC families (typical sizes), p. 1).</p>
@@ -1327,7 +1327,7 @@ diagram and the two circuits below are drawn from <a href="../hardware.yml"><cod
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic)'s function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <h2 id="the-divider">The divider<a class="headerlink" href="#the-divider" title="Permanent link">&para;</a></h2>
 <p>The driver reads the node of a resistor divider. In <strong>low-side</strong> form (the thermistor to ground) the node falls as
@@ -1340,7 +1340,7 @@ the part heats; in <strong>high-side</strong> form (the thermistor to the supply
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <figure class="kb-figure">
 <img src="../diagrams/chip-circuit-divider-high.svg#only-light" alt="Schematic of the NTC thermistor (generic) high-side divider: the chip with U2 MCU, R1 resistor 10 kΩ, C1 capacitor 100 nF; the MCU wires carry the port hooks ReadRaw()." width="840" height="463" loading="lazy"><img src="../diagrams/chip-circuit-divider-high.dark.svg#only-dark" alt="Schematic of the NTC thermistor (generic) high-side divider: the chip with U2 MCU, R1 resistor 10 kΩ, C1 capacitor 100 nF; the MCU wires carry the port hooks ReadRaw()." width="840" height="463" loading="lazy">
@@ -1350,7 +1350,7 @@ the part heats; in <strong>high-side</strong> form (the thermistor to the supply
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-parts -->
 <p><strong>Low-side divider</strong> (figure <code>chip-circuit-divider</code>)</p>
@@ -1436,13 +1436,13 @@ is a pure ratio and the supply drops out (<strong>ratiometric</strong>, the defa
 whole range is the geometric mean:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Rs = sqrt(R(Tmin) * R(Tmax))
 </span></code></pre></div>
-<p>Worked example (unverified rows): 188.5 kOhm at -40 and 313 Ohm at +150 give 7.7 kOhm; 10 kOhm centres the divider at
+<p>Worked example (rows unverified): 188.5 kOhm at -40 and 313 Ohm at +150 give 7.7 kOhm; 10 kOhm centres the divider at
 25 degrees Celsius instead and is the common choice. Round to the nearest value you can buy and give the driver the
 real value in <code>series_ohm</code> (1 to 16 777 216 ohms), with its tolerance in <code>series_tol_ppm</code> so the bound includes it.</p>
 <h2 id="what-an-adc-step-is-worth">What an ADC step is worth<a class="headerlink" href="#what-an-adc-step-is-worth" title="Permanent link">&para;</a></h2>
 <p>Near a divider's middle one ADC step is about <code>T^2 / B / (r (1 - r)) / 2^bits</code> kelvin, with <code>r</code> the node's share. It
 is finest where <code>r</code> is 0.5 and coarsens toward the ends. Worked example, a 12-bit ADC, 10 kOhm series resistor and the
-example preset (derived from its unverified rows):</p>
+example preset (derived from its rows, which are unverified):</p>
 <table>
 <thead>
 <tr>
@@ -1518,11 +1518,11 @@ below one code even at the hot end.</p>
 </ul>
 <h2 id="self-heating">Self-heating<a class="headerlink" href="#self-heating" title="Permanent link">&para;</a></h2>
 <p>The divider heats the thermistor: <code>P = Vs^2 * Rn / (Rs + Rn)^2</code>, at most <code>Vs^2 / (4 Rs)</code>. The rise is <code>P</code> divided by
-the part's dissipation constant in your mounting, in milliwatts per kelvin; about 1 mW/K is <strong>typical</strong> for a chip part
-on a board, but yours comes from its datasheet and your assembly. At 3.3 V with 10 kOhm and 10 kOhm that is 272 uW,
-about 0.27 K at 1 mW/K, which is ten ADC steps of the worked example. <code>SelfHeatingMicrowatts()</code> computes <code>P</code>; the
-driver does not correct for it. To cut it, power the divider from a GPIO only while sampling (<code>SetBias()</code>, see
-<a href="../porting/">Porting</a>), raise <code>Rs</code>, or lower the supply.</p>
+the part's dissipation constant in your mounting, in milliwatts per kelvin; about 1 mW/K is typical for a chip part on
+a board (the worked example's sheet gives 1 mW/degC at 25 degrees Celsius), but yours comes from its datasheet and
+your assembly. At 3.3 V with 10 kOhm and 10 kOhm that is 272 uW, about 0.27 K at 1 mW/K, which is ten ADC steps of the
+worked example. <code>SelfHeatingMicrowatts()</code> computes <code>P</code>; the driver does not correct for it. To cut it, power the
+divider from a GPIO only while sampling (<code>SetBias()</code>, see <a href="../porting/">Porting</a>), raise <code>Rs</code>, or lower the supply.</p>
 <div class="language-cpp highlight"><span class="filename">reference.cpp</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// How much a 3.3 V divider warms the part: P in microwatts, divided by the</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// part's dissipation constant (about 1 mW/K for a chip part on a board: read</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// your datasheet).</span>

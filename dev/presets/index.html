@@ -1129,8 +1129,8 @@ by writing a <code>Curve</code>, never by changing the driver.</p>
 <ul>
 <li>Beta equation and the B25/85 pair: Public references n/a n/a, Beta model, 1/T = 1/T0 + ln(R/R0) / B, p. 1</li>
 <li>Steinhart-Hart and the table tool: Public references n/a n/a, Steinhart-Hart, 1/T = a + b ln R + c ln(R)^3, p. 1</li>
-<li>Example part: R-T table (unverified): TDK unverified unverified, R-T table, -40 to 150 degC (not read), p. 1</li>
-<li>Example part: B, tolerances (unverified): TDK unverified unverified, R25, B, tolerances (not read), p. 1</li>
+<li>Example part: R-T table (rows unverified): TDK none printed Rev.3, Electrical Characteristics, 1degC Step Data link (the table itself is not in the PDF), <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></li>
+<li>Example part: R25, B and tolerances: TDK none printed Rev.3, Electrical Characteristics: Resistance, B value, <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></li>
 </ul>
 <p>All of them, with the driver API for each: <a href="../datasheet/">Datasheet map</a>.</p>
 </details>
@@ -1164,19 +1164,21 @@ by writing a <code>Curve</code>, never by changing the driver.</p>
 <td>10 kOhm</td>
 <td>3435 K (B25/85)</td>
 <td>The worked example's TDK NTCG163JF103FT1S</td>
-<td><strong>Unverified until the datasheet is supplied</strong></td>
+<td>R25, B, tolerances: TDK Rev.3, p. 1. Rows: <strong>unverified</strong></td>
 </tr>
 </tbody>
 </table>
 <p>Neither carries a window. A beta curve needs <code>min_temperature_mc</code> and <code>max_temperature_mc</code> in the <code>Config</code>; a table
 carries its own range.</p>
 <div class="admonition warning">
-<p class="admonition-title">Unverified until the datasheet is supplied</p>
-<p>The rows of <code>kTdkNtcg163jf103ft1s</code> are a secondary listing of the vendor's table and were <strong>not</strong> checked against
-the part's datasheet, whose PDF was not available. The 1 % tolerances are the manufacturer's product page, also
-unchecked. A TDK NTCG163JF103FT1 (the 125 degree grade) is another part: verify against its own sheet. Do not rely
-on the rows for a product until they are confirmed; the driver and its tests do not depend on them, and the rest of
-these pages hold for any part.</p>
+<p class="admonition-title">The rows are unverified</p>
+<p>The datasheet of <code>kTdkNtcg163jf103ft1s</code> (TDK, Rev.3, 8 May 2023, one page) confirms R25 10 kOhm +-1 %, B25/85
+3435 K +-1 %, B25/50 3380 K typ. and the range -40 to +150 degrees Celsius. It prints <strong>no resistance table</strong>: the
+step data is a separate file (403 to an automated fetch). The 39 rows are a secondary listing, consistent with
+those B values (a test checks it) but not compared row by row. A TDK NTCG163JF103FT1 (the 125 degree grade) is
+another part: verify against its own sheet. Do not rely on the rows for a product until you have compared them
+with the vendor's step file; the driver and its tests do not depend on them, and the rest of these pages hold for
+any part.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">The generic preset is a convenience</p>
@@ -1235,7 +1237,8 @@ strictly; rows that round to the same logarithm are refused. <code>tools/ntc_tab
 coefficients, from R25 and B, or from a vendor's list, and prints the interpolation error
 (<a href="../conversion/#making-a-table">Conversion</a>).</p>
 <p><strong>To contribute a preset</strong>, add the rows and the source (document, table, revision) to the comment above them, add the
-part to the test model with the datasheet's own numbers, and mark it unverified until a reviewer has the PDF.</p>
+part to the test model with the datasheet's own numbers, and mark it unverified until a reviewer has compared it with
+the vendor's own table.</p>
 
 
 

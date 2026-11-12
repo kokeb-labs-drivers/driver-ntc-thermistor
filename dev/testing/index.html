@@ -1151,47 +1151,47 @@ gates, on every pull request.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/test_ntc_thermistor.cpp"><code>tests/test_ntc_thermistor.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/test_ntc_thermistor.cpp"><code>tests/test_ntc_thermistor.cpp</code></a></td>
 <td><code>Validate()</code> at every boundary (as <code>static_assert</code>), presets as data, lifecycle, the rails and margins in both topologies, the window and offset, averaging, <code>Unstable</code>, the bound, the helpers</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
 <td>The driver against the model: <code>Ln16()</code>, exactness at the rows, agreement with the true curve of every part over its range, interpolation bounds, round trip, symmetry, separate supply and reference, no wrap, purity</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/test_curves.cpp"><code>tests/test_curves.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/test_curves.cpp"><code>tests/test_curves.cpp</code></a></td>
 <td>Steinhart-Hart mode against <code>std::log</code> in both topologies and its validation, the bound's terms (B on a table, <code>curve_error_mc</code>), the faults with a reference above the supply, the table ends, the cap on the waits</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/731831ed59bff27a755db3a0df48b882ac43caa0/tests/generated"><code>tests/generated/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/generated"><code>tests/generated/</code></a></td>
 <td>The output of <code>tools/ntc_table.py</code> (built at test time) is a valid table that <code>Convert()</code> follows to 0.06 K; the tool's own checks run as a test</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/test_bias.cpp"><code>tests/test_bias.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/test_bias.cpp"><code>tests/test_bias.cpp</code></a></td>
 <td>The order of port calls and the divider off on every path</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/test_errors.cpp"><code>tests/test_errors.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/test_errors.cpp"><code>tests/test_errors.cpp</code></a></td>
 <td>Every error value the driver can return is returned by a real call; <code>ToString</code>, <code>Result</code>, version</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
 <td>The menuconfig defaults, the curve choices</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/mock_ntc_thermistor.hpp"><code>tests/mock_ntc_thermistor.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/mock_ntc_thermistor.hpp"><code>tests/mock_ntc_thermistor.hpp</code></a></td>
 <td>The model and the mock ports</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/731831ed59bff27a755db3a0df48b882ac43caa0/tests/compile_fail"><code>tests/compile_fail/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/compile_fail"><code>tests/compile_fail/</code></a></td>
 <td>Ports and configurations that must not compile</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
 <td><code>find_package(ntc_thermistor)</code> from an installed package</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/731831ed59bff27a755db3a0df48b882ac43caa0/tests/docs"><code>tests/docs/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/docs"><code>tests/docs/</code></a></td>
 <td>Every code example on the docs pages, compiled</td>
 </tr>
 </tbody>
@@ -1260,7 +1260,7 @@ steps for the step rule:</p>
 tests assert are pinned numbers measured from the model (see <a href="../conversion/">Conversion</a>), not loosened to pass.</p>
 <h2 id="fuzz-tests">Fuzz tests<a class="headerlink" href="#fuzz-tests" title="Permanent link">&para;</a></h2>
 <p>Everything the driver reads is a code from the port's ADC, so the code is the untrusted input.
-<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/tests/fuzz/fuzz_ntc_thermistor.cpp"><code>tests/fuzz/fuzz_ntc_thermistor.cpp</code></a> lets libFuzzer choose a configuration (a
+<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/fuzz/fuzz_ntc_thermistor.cpp"><code>tests/fuzz/fuzz_ntc_thermistor.cpp</code></a> lets libFuzzer choose a configuration (a
 beta curve, the example preset, the generic preset, a table built from fuzzed pairs, or none), then up to 48 driver
 calls, and on every conversion what the ADC does: pass the code the divider model gives for the simulated resistance,
 fail, return a rail code, a value above scale, or a code that wobbles. After every call it checks the driver's promises
@@ -1285,14 +1285,14 @@ and aborts, naming the line, when one breaks:</p>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./build-fuzz/tests/fuzz/fuzz_ntc_thermistor<span class="w"> </span>-max_total_time<span class="o">=</span><span class="m">120</span><span class="w"> </span>tests/fuzz/corpus/fuzz_ntc_thermistor
 </span></code></pre></div>
 <p>The same file also builds without libFuzzer as <code>fuzz_replay_fuzz_ntc_thermistor</code>, and CTest replays every input in
-<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/731831ed59bff27a755db3a0df48b882ac43caa0/tests/fuzz/corpus/fuzz_ntc_thermistor"><code>tests/fuzz/corpus/fuzz_ntc_thermistor/</code></a> on GCC and Clang
+<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/tree/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/tests/fuzz/corpus/fuzz_ntc_thermistor"><code>tests/fuzz/corpus/fuzz_ntc_thermistor/</code></a> on GCC and Clang
 (<code>ntc_thermistor_fuzz_ntc_thermistor_corpus</code>): the seeds, and every input that ever broke a promise (name it
 <code>regress-*</code>), so a fixed bug stays fixed. CI fuzzes for 120 s on every pull request, from the seeds plus a corpus it
 keeps between runs (job <code>Host quality / fuzz</code>).</p>
 <h2 id="quality-gates">Quality gates<a class="headerlink" href="#quality-gates" title="Permanent link">&para;</a></h2>
 <p>The <code>Host quality</code> job measures the library code, <code>inc/</code> and <code>src/</code> only (tests and examples are left out), and
 fails when a value is over the limits of this repository's assurance level, <code>high</code> (set in
-<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
 <table>
 <thead>
 <tr>
@@ -1358,10 +1358,10 @@ fails when a value is over the limits of this repository's assurance level, <cod
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build-san<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="w"> </span>--test-dir<span class="w"> </span>build-san<span class="w"> </span>--output-on-failure
 </span></code></pre></div>
 <p>The fuzz gate runs locally as shown in <a href="#fuzz-tests">Fuzz tests</a>.</p>
-<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
+<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
 cppcoreguidelines, modernize, performance, portability and readability, each disabled check with its reason) and
 cppcheck (strict) run in the <code>C++ lint</code> and <code>Repository checks</code> jobs and fail on any finding.</p>
-<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
+<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
 ci-tools at level <code>high</code>: it traces a host build and the Cortex-M build (<code>ntc_thermistor_optimised_build</code>) of every
 translation unit, checks them against MISRA C++:2023 and the handbook's C++20 profile (the CodeQL coding-standards
 and profile packs, plus the validated clang-tidy and cppcheck checks), and reports each finding against the
@@ -1370,7 +1370,7 @@ its deviation on the line before it (<code>// codeql::misra_deviation_next_line(
 of <code>inc/ntc_thermistor.hpp</code>). Until the repository is public the job runs with <code>open_source_prerelease: true</code>, the
 declaration that the code is released under the licence in <code>LICENSE</code> and is to be published.</p>
 <h2 id="ci-workflows">CI workflows<a class="headerlink" href="#ci-workflows" title="Permanent link">&para;</a></h2>
-<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/731831ed59bff27a755db3a0df48b882ac43caa0/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
+<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/470897fb6ae3fd76628120efa0b0b4d7fec81a2f/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
 the <code>CI gate</code> job, the single required check (<code>CI gate / gate</code>).</p>
 <table>
 <thead>

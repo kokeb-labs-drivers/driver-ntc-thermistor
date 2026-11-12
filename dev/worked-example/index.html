@@ -851,10 +851,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-part-as-listed" class="md-nav__link">
+  <a href="#the-part-as-the-datasheet-gives-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The part, as listed
+        The part, as the datasheet gives it
       
     </span>
   </a>
@@ -895,10 +895,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#confirming-it-with-the-datasheet" class="md-nav__link">
+  <a href="#what-is-left-to-confirm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirming it with the datasheet
+        What is left to confirm
       
     </span>
   </a>
@@ -1129,10 +1129,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-part-as-listed" class="md-nav__link">
+  <a href="#the-part-as-the-datasheet-gives-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The part, as listed
+        The part, as the datasheet gives it
       
     </span>
   </a>
@@ -1173,10 +1173,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#confirming-it-with-the-datasheet" class="md-nav__link">
+  <a href="#what-is-left-to-confirm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Confirming it with the datasheet
+        What is left to confirm
       
     </span>
   </a>
@@ -1210,61 +1210,90 @@
 
 <h1 id="worked-example-a-10-kohm-chip-thermistor">Worked example: a 10 kOhm chip thermistor<a class="headerlink" href="#worked-example-a-10-kohm-chip-thermistor" title="Permanent link">&para;</a></h1>
 <p>One part end to end, with its numbers: the TDK NTCG163JF103FT1S, a 10 kOhm 0603 chip thermistor, read by a 12-bit
-ADC. This is the only page that depends on that part's datasheet, and the datasheet was <strong>not available</strong>.</p>
+ADC. This is the only page that depends on that part's datasheet (TDK, Rev.3, 8 May 2023, one page, p. 1).</p>
 <div class="admonition warning">
-<p class="admonition-title">Unverified until the datasheet is supplied</p>
-<p>Every number below that comes from the part (the rows, B, the tolerances, the package, the ratings) is a secondary
-listing and has <strong>not</strong> been checked against the datasheet. The arithmetic (the divider, the interpolation, the
-step sizes) is computed by the driver and holds for any part with these rows.
-When the datasheet arrives, <code>docs/datasheets.yml</code> says how to confirm each value.</p>
+<p class="admonition-title">The table rows are unverified</p>
+<p>R25, B, the tolerances, the package and the ratings below are from the datasheet. The 39 resistance rows are
+<strong>not</strong>: the sheet prints no table and links a separate step file (403 to an automated fetch). The arithmetic (the
+divider, the interpolation, the step sizes) is computed by the driver and holds for any part with these rows.</p>
 </div>
 <!-- generated: datasheet-refs -->
 <details class="abstract">
 <summary>Datasheet sections this page relies on</summary>
-<p>From TDK unverified unverified:</p>
+<p>From TDK none printed Rev.3:</p>
 <ul>
-<li>Example part: R-T table (unverified): R-T table, -40 to 150 degC (not read), p. 1</li>
-<li>Example part: B, tolerances (unverified): R25, B, tolerances (not read), p. 1</li>
-<li>Example part: package, ratings (unverified): Dimensions, ratings (not read), p. 1</li>
+<li>Example part: R-T table (rows unverified): Electrical Characteristics, 1degC Step Data link (the table itself is not in the PDF), <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></li>
+<li>Example part: R25, B and tolerances: Electrical Characteristics: Resistance, B value, <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></li>
+<li>Example part: package and ratings: Dimension and Construction; Electrical Characteristics: power, dissipation, current, voltage, range, <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p. 1</a></li>
 </ul>
 <p>All of them, with the driver API for each: <a href="../datasheet/">Datasheet map</a>.</p>
 </details>
 <!-- /generated -->
 
-<h2 id="the-part-as-listed">The part, as listed<a class="headerlink" href="#the-part-as-listed" title="Permanent link">&para;</a></h2>
+<h2 id="the-part-as-the-datasheet-gives-it">The part, as the datasheet gives it<a class="headerlink" href="#the-part-as-the-datasheet-gives-it" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>What</th>
 <th>Value</th>
-<th>Status</th>
+<th>Source</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>R25</td>
 <td>10 kOhm, 1 %</td>
-<td>Unverified</td>
+<td>Datasheet p. 1, Electrical Characteristics</td>
 </tr>
 <tr>
 <td>B25/85</td>
 <td>3435 K, 1 %</td>
-<td>Unverified</td>
+<td>Datasheet p. 1</td>
+</tr>
+<tr>
+<td>B25/50</td>
+<td>3380 K, typical</td>
+<td>Datasheet p. 1</td>
+</tr>
+<tr>
+<td>Operating temperature</td>
+<td>-40 to +150 degrees Celsius</td>
+<td>Datasheet p. 1</td>
+</tr>
+<tr>
+<td>Maximum rated power</td>
+<td>125 mW at 25 degrees Celsius</td>
+<td>Datasheet p. 1 (a secondary listing said 100 mW: wrong)</td>
+</tr>
+<tr>
+<td>Thermal dissipation constant</td>
+<td>1 mW/degC at 25 degrees Celsius</td>
+<td>Datasheet p. 1</td>
+</tr>
+<tr>
+<td>Permissive operating current</td>
+<td>0.31 mA at 25 degrees Celsius</td>
+<td>Datasheet p. 1</td>
+</tr>
+<tr>
+<td>Maximum voltage</td>
+<td>5 V</td>
+<td>Datasheet p. 1</td>
+</tr>
+<tr>
+<td>Package</td>
+<td>0603 (JIS1608): 1.6 x 0.8 x 0.8 mm, grade AEC-Q200</td>
+<td>Datasheet p. 1, Dimension and Construction</td>
 </tr>
 <tr>
 <td>Rows</td>
 <td>39, -40 to +150 degrees Celsius every 5</td>
-<td>Unverified</td>
+<td><strong>Unverified</strong>: not in the sheet; consistent with its B values</td>
 </tr>
 <tr>
-<td>Package</td>
-<td>0603 chip</td>
-<td>Unverified</td>
-</tr>
-<tr>
-<td>Power rating and dissipation constant</td>
-<td>Secondary listings give two values (125 and 100 mW; 1 mW/K and none)</td>
-<td>In conflict: read the sheet</td>
+<td>Thermal time constant</td>
+<td>not given</td>
+<td>The sheet lists none</td>
 </tr>
 </tbody>
 </table>
@@ -1339,17 +1368,15 @@ rounds just past -40 or +150 degrees is <code>BelowRange</code> or <code>AboveRa
 <p>A beta curve with B25/85 = 3435 K is exact at 25 and 85 degrees and wrong by +3.9 K at -35 and +3.0 K at +145 (the
 table in <a href="../conversion/#beta-against-a-table-the-same-part">Conversion</a>). That is the reason tables exist: the same
 driver, the same divider, the same code, a different <code>Curve</code>.</p>
-<h2 id="confirming-it-with-the-datasheet">Confirming it with the datasheet<a class="headerlink" href="#confirming-it-with-the-datasheet" title="Permanent link">&para;</a></h2>
+<h2 id="what-is-left-to-confirm">What is left to confirm<a class="headerlink" href="#what-is-left-to-confirm" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Fill in the document entry <code>ds</code> in <a href="../datasheets.yml"><code>docs/datasheets.yml</code></a>: number, revision, date, <code>url</code>, <code>pdf</code>
-   and <code>sha256</code> (<code>shasum -a 256</code>). Never commit the PDF.</li>
-<li>Compare the sheet's table with <code>kTdkNtcg163jf103ft1sRows</code> in <code>inc/ntc_thermistor_presets.hpp</code>; correct any row, and
-   the B value and tolerances.</li>
-<li>Resolve the conflicts above (power rating, dissipation constant) and write the right ones on this page.</li>
-<li>Replace the <code>section</code> and <code>page</code> placeholders in the <code>ds</code> rows of the datasheet topics with the sheet's own, delete
-   every "unverified" in this page, in <a href="../presets/">Presets</a>, in the header of <code>ntc_thermistor_presets.hpp</code> and in
-   <code>docs/hardware.yml</code>.</li>
-<li>Run the tests: the model's copy of the table is typed separately, so a changed row fails until both agree.</li>
+<li>Download the vendor's 1 degC step file named on the datasheet (<code>rt_sheets/ntcg163jf103ft1s.csv</code> under the same
+   product folder; it answered 403 to an automated fetch) and compare its 5 degree rows with
+   <code>kTdkNtcg163jf103ft1sRows</code> in <code>inc/ntc_thermistor_presets.hpp</code>.</li>
+<li>Correct any row in the preset and in the model's copy in <code>tests/mock_ntc_thermistor.hpp</code>: the model's copy is typed
+   separately, so a changed row fails until both agree. Then delete the word "unverified" on the pages that carry it.</li>
+<li>Check your supply against the sheet's limits (5 V maximum voltage, 0.31 mA permissive current at 25 degrees
+   Celsius): 3.3 V across 10 kOhm and 10 kOhm is 0.165 mA at 25 degrees Celsius. <code>SelfHeatingMicrowatts()</code> gives the power.</li>
 </ol>
 
 

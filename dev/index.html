@@ -943,14 +943,14 @@ ADC's range and a part outside its rated window are errors with their own names,
 <li><strong>Faults by name</strong>: <code>OpenCircuit</code>, <code>ShortCircuit</code>, <code>BelowRange</code>, <code>AboveRange</code>, <code>Unstable</code>, <code>CodeOutOfScale</code>.
   See <a href="troubleshooting/">Troubleshooting</a>.</li>
 <li><strong>A bound on every reading</strong> from the tolerances you declare and one converter step.</li>
-<li><strong>Tested without hardware</strong> against a model that shares no code with the driver. See <a href="testing/">Testing and CI</a>.</li>
+<li>
+<p><strong>Tested without hardware</strong> against a model that shares no code with the driver. See <a href="testing/">Testing and CI</a>.</p>
+<p>!!! warning "Not verified on hardware" The driver is host-tested against a model of the divider and fuzzed; it has
+not been run on a thermistor. The example preset (a TDK part) takes R25, B and the tolerances from the vendor's
+Rev.3 datasheet; its 39 table rows are a secondary listing, <strong>unverified</strong> because that sheet prints no table.
+Nothing generic depends on it. See <a href="limitations/">Status and limitations</a>.</p>
+</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Not verified on hardware</p>
-<p>The driver is host-tested against a model of the divider and fuzzed; it has not been run on a thermistor. The
-example preset (a TDK part) is a secondary listing of the vendor's table and is <strong>unverified until the datasheet
-is supplied</strong>. Nothing generic depends on it. See <a href="limitations/">Status and limitations</a>.</p>
-</div>
 <h2 id="datasheet">Datasheet<a class="headerlink" href="#datasheet" title="Permanent link">&para;</a></h2>
 <!-- generated: datasheet-card -->
 <table>
@@ -968,9 +968,9 @@ is supplied</strong>. Nothing generic depends on it. See <a href="limitations/">
 <td><a href="https://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation">vendor page</a></td>
 </tr>
 <tr>
-<td>Datasheet: NTCG163JF103FT1S chip NTC thermistor (worked example; unverified until the datasheet is supplied) (TDK unverified)</td>
-<td>unverified, unverified</td>
-<td><a href="https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=NTCG163JF103FT1S">vendor page</a></td>
+<td>Datasheet: Chip NTC Thermistor, NTCG series, NTCG163JF103FT1S (datasheet) (TDK none printed)</td>
+<td>Rev.3, May 8, 2023</td>
+<td><a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf">PDF</a> · <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf">vendor page</a></td>
 </tr>
 </tbody>
 </table>
