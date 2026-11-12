@@ -114,14 +114,20 @@ find_package(Python3 COMPONENTS Interpreter QUIET)
 if(Python3_FOUND)
   add_test(NAME ntc_thermistor_table_tool_selfcheck
     COMMAND ${Python3_EXECUTABLE} -I ${PROJECT_SOURCE_DIR}/tools/ntc_table.py selfcheck)
+  # The table is written at configure time, not by a build step: a configure-only build (the compile database
+  # clang-tidy reads in CI) must find the include already in the build directory.
   set(NTC_THERMISTOR_GENERATED_TABLE ${CMAKE_CURRENT_BINARY_DIR}/generated_sh_table.inc)
-  add_custom_command(OUTPUT ${NTC_THERMISTOR_GENERATED_TABLE}
+  execute_process(
     COMMAND ${Python3_EXECUTABLE} -I ${PROJECT_SOURCE_DIR}/tools/ntc_table.py sh 0.8767633e-3 2.527899e-4
       1.906681e-7 --from -40 --to 150 --step 5 --name kGeneratedSh --max-error 0.05
-      > ${NTC_THERMISTOR_GENERATED_TABLE}
-    DEPENDS ${PROJECT_SOURCE_DIR}/tools/ntc_table.py VERBATIM)
-  add_executable(ntc_thermistor_generated_table test_main.cpp generated/test_generated_table.cpp
-    ${NTC_THERMISTOR_GENERATED_TABLE})
+    OUTPUT_FILE ${NTC_THERMISTOR_GENERATED_TABLE}
+    RESULT_VARIABLE NTC_THERMISTOR_TABLE_STATUS)
+  if(NOT NTC_THERMISTOR_TABLE_STATUS EQUAL 0)
+    message(FATAL_ERROR "tools/ntc_table.py failed (${NTC_THERMISTOR_TABLE_STATUS}); see its message above")
+  endif()
+  # Configure again when the generator changes.
+  set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/tools/ntc_table.py)
+  add_executable(ntc_thermistor_generated_table test_main.cpp generated/test_generated_table.cpp)
   ntc_thermistor_test_target(ntc_thermistor_generated_table)
   target_include_directories(ntc_thermistor_generated_table PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
   add_test(NAME ntc_thermistor_generated_table COMMAND ntc_thermistor_generated_table)
