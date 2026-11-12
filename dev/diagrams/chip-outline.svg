@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="749" viewBox="0 0 760 749" role="img" aria-labelledby="chip-outline-title chip-outline-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-outline-title">NTC thermistor (generic) package, 0603</title>
+<desc id="chip-outline-desc">Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins.</desc>
+<rect x="0.5" y="0.5" width="759" height="748" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">NTC thermistor (generic) package, 0603</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Package body from above, to scale, pin 1 marked; arrows give the datasheet's dimensions.</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">The pads are centred on each side, evenly spaced: the land pattern is in the datasheet.</text>
+<text x="32" y="147.3" font-size="15" fill="#566070">Datasheet: Chip and bead NTC families (typical sizes), p. 1.</text>
+<rect x="32" y="163.3" width="696" height="1" fill="#E2E7EE"/>
+<path d="M288.7 199.3 L334.7 199.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M288.7 455.3 L334.7 455.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M156.7 459.3 L156.7 505.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M284.7 459.3 L284.7 505.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M132.7 681.3 L308.7 681.3" fill="none" stroke="#8893A2" stroke-width="1.2"/>
+<path d="M288.7 553.3 L320.7 553.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M288.7 681.3 L320.7 681.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="156.7" y="199.3" width="128" height="256" rx="6.4" fill="#F5F7FA" stroke="#2B3442" stroke-width="2"/>
+<rect x="134.7" y="318" width="22" height="18.7" rx="2" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<rect x="284.7" y="318" width="22" height="18.7" rx="2" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<circle cx="170.7" cy="441.3" r="6" fill="#2B3442"/>
+<path d="M328.7 199.3 L328.7 455.3" fill="none" stroke="#2B3442" stroke-width="1.2"/>
+<path d="M328.7 199.3 L331.7 206.3 L325.7 206.3 Z" fill="#2B3442"/>
+<path d="M328.7 455.3 L325.7 448.3 L331.7 448.3 Z" fill="#2B3442"/>
+<path d="M156.7 499.3 L284.7 499.3" fill="none" stroke="#2B3442" stroke-width="1.2"/>
+<path d="M156.7 499.3 L163.7 496.3 L163.7 502.3 Z" fill="#2B3442"/>
+<path d="M284.7 499.3 L277.7 502.3 L277.7 496.3 Z" fill="#2B3442"/>
+<rect x="156.7" y="553.3" width="128" height="128" rx="2" fill="#F5F7FA" stroke="#2B3442" stroke-width="2"/>
+<path d="M314.7 553.3 L314.7 681.3" fill="none" stroke="#2B3442" stroke-width="1.2"/>
+<path d="M314.7 553.3 L317.7 560.3 L311.7 560.3 Z" fill="#2B3442"/>
+<path d="M314.7 681.3 L311.7 674.3 L317.7 674.3 Z" fill="#2B3442"/>
+<text x="145.7" y="331.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="#86198F">1</text>
+<text x="295.7" y="331.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="#86198F">2</text>
+<text x="338.7" y="331.8" font-size="12.5" font-weight="600" fill="#2B3442">1.6 mm</text>
+<text x="220.7" y="517.3" font-size="12.5" font-weight="600" text-anchor="middle" fill="#2B3442">0.8 mm</text>
+<text x="324.7" y="621.8" font-size="12.5" font-weight="600" fill="#2B3442">0.8 mm</text>
+<text x="142.7" y="621.8" font-size="12.5" text-anchor="end" fill="#566070">Side view</text>
+<text x="449.3" y="221.3" font-size="22" font-weight="700" fill="#0E1726">1.6 x 0.8 x 0.8 mm</text>
+<text x="449.3" y="249.3" font-size="13.5" fill="#566070">0603, 2 pins</text>
+<text x="449.3" y="271.3" font-size="13.5" fill="#566070">Leads reach out of the body</text>
+<text x="449.3" y="293.3" font-size="13.5" fill="#566070">3 other packages: 0402, 0805,</text>
+<text x="449.3" y="315.3" font-size="13.5" fill="#566070">radial-bead</text>
+<rect x="32" y="702.7" width="14" height="14" rx="4" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<text x="54" y="714.3" font-size="12.5" fill="#566070">analog</text>
+</svg>

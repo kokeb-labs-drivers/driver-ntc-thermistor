@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1026" viewBox="0 0 1200 1026" role="img" aria-labelledby="conversion-pipeline-title conversion-pipeline-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="conversion-pipeline-title">From an ADC code to a temperature</title>
+<desc id="conversion-pipeline-desc">Pipeline of six stages: the mean of the samples, the classification of the code as open circuit, short circuit or out of scale, the divider's node ratio giving the resistance, the curve (table, Steinhart-Hart or beta) giving the temperature, the window and offset, and the uncertainty bound.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1025" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">ARCHITECTURE</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">From an ADC code to a temperature</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">Integers only: ohms, milli-degrees, millivolts. Each stage can end the read with its own error.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#252F3C"/>
+<path d="M415 242.4 L415 290.4" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M415 387.4 L415 435.4" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M415 532.4 L415 580.4" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M415 677.4 L415 725.4" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M415 822.4 L415 870.4" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="149.4" width="766" height="89" rx="12" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<rect x="32" y="157.4" width="4" height="73" rx="2" fill="#F4B942"/>
+<rect x="838" y="149.4" width="330" height="79" rx="12" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="32" y="294.4" width="766" height="89" rx="12" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<rect x="32" y="302.4" width="4" height="73" rx="2" fill="#F4B942"/>
+<rect x="838" y="294.4" width="330" height="79" rx="12" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="32" y="439.4" width="766" height="89" rx="12" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<rect x="32" y="447.4" width="4" height="73" rx="2" fill="#F4B942"/>
+<rect x="838" y="439.4" width="330" height="79" rx="12" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="32" y="584.4" width="766" height="89" rx="12" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<rect x="32" y="592.4" width="4" height="73" rx="2" fill="#F4B942"/>
+<rect x="838" y="584.4" width="330" height="79" rx="12" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="32" y="729.4" width="766" height="89" rx="12" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<rect x="32" y="737.4" width="4" height="73" rx="2" fill="#F4B942"/>
+<rect x="838" y="729.4" width="330" height="79" rx="12" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="32" y="874.4" width="766" height="89" rx="12" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="32" y="882.4" width="4" height="73" rx="2" fill="#2BB3A3"/>
+<text x="56" y="184.4" font-size="20" font-weight="700" fill="#F8D27A">1  Mean code</text>
+<text x="56" y="215" font-size="17" fill="#D2DAE4">sample_count conversions; the mean, rounded</text>
+<text x="856" y="184.4" font-size="20" font-weight="700" fill="#FDE68A">Can end with</text>
+<text x="856" y="207.8" font-size="17" fill="#FDE68A">Bus, CodeOutOfScale, Unstable</text>
+<text x="56" y="329.4" font-size="20" font-weight="700" fill="#F8D27A">2  Classify the code</text>
+<text x="56" y="360" font-size="17" fill="#D2DAE4">the rails: margins at open and at short</text>
+<text x="856" y="329.4" font-size="20" font-weight="700" fill="#FDE68A">Can end with</text>
+<text x="856" y="352.8" font-size="17" fill="#FDE68A">OpenCircuit, ShortCircuit</text>
+<text x="56" y="474.4" font-size="20" font-weight="700" fill="#F8D27A">3  Divider to resistance</text>
+<text x="56" y="505" font-size="17" fill="#D2DAE4">node ratio and the series resistor, in 1/256 ohm</text>
+<text x="856" y="474.4" font-size="20" font-weight="700" fill="#FDE68A">Can end with</text>
+<text x="856" y="497.8" font-size="17" fill="#FDE68A">BelowRange (more than 32 bits)</text>
+<text x="56" y="619.4" font-size="20" font-weight="700" fill="#F8D27A">4  Curve</text>
+<text x="56" y="650" font-size="17" fill="#D2DAE4">table, Steinhart-Hart (cubic in ln R) or beta: 1/T in Q32</text>
+<text x="856" y="619.4" font-size="20" font-weight="700" fill="#FDE68A">Can end with</text>
+<text x="856" y="642.8" font-size="17" fill="#FDE68A">BelowRange, AboveRange</text>
+<text x="56" y="764.4" font-size="20" font-weight="700" fill="#F8D27A">5  Window and offset</text>
+<text x="56" y="795" font-size="17" fill="#D2DAE4">inside the window, then the offset</text>
+<text x="856" y="764.4" font-size="20" font-weight="700" fill="#FDE68A">Can end with</text>
+<text x="856" y="787.9" font-size="17" fill="#FDE68A">BelowRange, AboveRange</text>
+<text x="56" y="909.4" font-size="20" font-weight="700" fill="#A7F3E6">6  Reading</text>
+<text x="56" y="940" font-size="17" fill="#D2DAE4">temperature_mc, resistance_ohm, code, uncertainty_mc</text>
+<rect x="32" y="975.8" width="14" height="14" rx="4" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<text x="54" y="990.4" font-size="16" fill="#9AA6B5">stage</text>
+<rect x="122.3" y="975.8" width="14" height="14" rx="4" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="144.3" y="990.4" font-size="16" fill="#9AA6B5">ends the read with an error</text>
+<rect x="385.4" y="975.8" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="407.4" y="990.4" font-size="16" fill="#9AA6B5">result</text>
+</svg>

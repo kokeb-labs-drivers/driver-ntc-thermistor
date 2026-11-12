@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="433" viewBox="0 0 1200 433" role="img" aria-labelledby="chip-blocks-title chip-blocks-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-blocks-title">Inside the NTC thermistor (generic)</title>
+<desc id="chip-blocks-desc">Block diagram of the NTC thermistor (generic): its function blocks, how they connect and which package pins reach each block.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="432" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">Inside the NTC thermistor (generic)</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Function blocks and their links, from the datasheet's block diagram (Beta parameter model; Steinhart-Hart equation, p. 1). Pins on the edge carry their</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">package number.</text>
+<rect x="32" y="141.6" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="112" y="159.6" width="1024" height="168" rx="14" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M119 247.6 L152 247.6" fill="none" stroke="#A21CAF" stroke-width="1.8"/>
+<path d="M119 271.6 L152 271.6" fill="none" stroke="#A21CAF" stroke-width="1.8"/>
+<rect x="152" y="223.6" width="944" height="72" rx="10" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="152" y="231.6" width="4" height="56" rx="2" fill="#C26A05"/>
+<rect x="105" y="240.6" width="14" height="14" rx="3" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<rect x="105" y="264.6" width="14" height="14" rx="3" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<text x="128" y="184.6" font-size="13" font-weight="700" fill="#334155">NTC THERMISTOR (GENERIC)</text>
+<text x="339" y="184.6" font-size="12" fill="#334155">0603</text>
+<text x="172" y="250.3" font-size="15" font-weight="700" fill="#8A3C0B">NTC element R(T)*</text>
+<text x="172" y="275.1" font-size="13" fill="#2B3442">R25 and B, or a table</text>
+<text x="98" y="252.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">T1*  1</text>
+<text x="98" y="276.1" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">T2*  2</text>
+<circle cx="152" cy="247.6" r="3" fill="#A21CAF"/>
+<circle cx="152" cy="271.6" r="3" fill="#A21CAF"/>
+<text x="32" y="349.6" font-size="12.5" fill="#566070">* Not confirmed in the datasheet: NTC element R(T): a generic element: the resistance law is the beta equation or the part's table; pin T1: not polarised; T1 and T2 are this driver's</text>
+<text x="32" y="367.6" font-size="12.5" fill="#566070">names; pin T2: not polarised; T1 and T2 are this driver's names.</text>
+<rect x="32" y="386.7" width="14" height="14" rx="4" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<text x="54" y="398.3" font-size="12.5" fill="#566070">analog</text>
+<path d="M120 392.9L150 392.9" fill="none" stroke="#8893A2" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="164" y="398.3" font-size="12.5" fill="#566070">signal or data between blocks</text>
+</svg>
