@@ -12,7 +12,7 @@
 <rect x="253.2" y="175.5" width="200" height="144" rx="12" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
 <rect x="32" y="347.5" width="1136" height="79" rx="12" fill="#FFEEF2" stroke="#F5BECB" stroke-width="1"/>
 <rect x="32" y="440.5" width="1136" height="79" rx="12" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
-<text x="826.8" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">NTC thermistor (generic)</text>
+<text x="826.8" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">NTC thermistor (…</text>
 <text x="826.8" y="232.9" font-size="16" text-anchor="middle" fill="#566070">U1</text>
 <text x="271.2" y="210.5" font-size="20" font-weight="700" fill="#1E429F">MCU</text>
 <text x="271.2" y="232.9" font-size="16" fill="#1E429F">U2</text>
@@ -22,7 +22,7 @@
 <text x="573" y="259.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">NODE  pin 2</text>
 <text x="573" y="292.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">+ R1 10 kΩ, C1 100 nF</text>
 <text x="50" y="382.5" font-size="20" font-weight="700" fill="#9F1239">Supplies and ground</text>
-<text x="50" y="405.9" font-size="17" fill="#9F1239">+3V3: T1; also U2.VREF · GND: ; also U2.GND</text>
+<text x="50" y="405.9" font-size="17" fill="#9F1239">+3V3: T1; also U2.VREF · GND (no NTC thermistor (generic) pin): U2.GND</text>
 <text x="50" y="475.5" font-size="20" font-weight="700" fill="#334155">Also on the board</text>
 <text x="50" y="498.9" font-size="17" fill="#334155">Support parts: 1 capacitor, 1 resistor around the supplies (values in the full schematic).</text>
 <text x="32" y="545" font-size="16" fill="#566070">* Not confirmed in the datasheet: R1: example value: pick R1 with the rule on the Hardware page; C1: example value, optional filter.</text>

@@ -52,12 +52,13 @@ The site at <https://kokeb-labs-drivers.github.io/driver-ntc-thermistor/> opens 
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- Temperature protection: what the datasheet of the example part calls it (Title, [p. 1](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1))
+- Temperature protection: what the datasheet of the example part calls it
 
-Uses named by the datasheet (Beta parameter model; Steinhart-Hart equation, p. 1).
+Uses named by the datasheet (Title, [p.
+1](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1)).
 <!-- /generated -->
 
-## Inside the device
+## Inside the part
 
 <!-- figure: chip-blocks -->
 <picture>

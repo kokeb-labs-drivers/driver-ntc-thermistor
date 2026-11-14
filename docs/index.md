@@ -9,12 +9,6 @@ hide:
 
 # NTC thermistor driver
 
-<!-- generated: chip-summary -->
-The **NTC thermistor (generic)** is a resistor whose resistance falls as it heats: with a series resistor it makes a
-voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance
-into a temperature (Beta parameter model; Steinhart-Hart equation, p. 1).
-<!-- /generated -->
-
 <p>A C++20 driver for any NTC thermistor read through a resistor divider into an ADC input: it turns a raw code into
 milli-degrees Celsius with integers only.</p>
 
@@ -22,6 +16,12 @@ milli-degrees Celsius with integers only.</p>
 [API guide](api-guide.md){ .md-button }
 [Source on GitHub](https://github.com/kokeb-labs-drivers/driver-ntc-thermistor){ .md-button }
 </div>
+
+<!-- generated: chip-summary -->
+The **NTC thermistor (generic)** is a resistor whose resistance falls as it heats: with a series resistor it makes a
+voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance
+into a temperature (Beta parameter model; Steinhart-Hart equation, p. 1).
+<!-- /generated -->
 
 <!-- figure: chip-hero -->
 <picture>
@@ -59,12 +59,13 @@ milli-degrees Celsius with integers only.</p>
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- Temperature protection: what the datasheet of the example part calls it (Title, [p. 1](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1))
+- Temperature protection: what the datasheet of the example part calls it
 
-Uses named by the datasheet (Beta parameter model; Steinhart-Hart equation, p. 1).
+Uses named by the datasheet (Title, [p.
+1](https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1)).
 <!-- /generated -->
 
-## Inside the device
+## Inside the part
 
 <!-- figure: chip-blocks -->
 <picture>
@@ -114,6 +115,40 @@ Uses named by the datasheet (Beta parameter model; Steinhart-Hart equation, p. 1
 <!-- /figure -->
 
 The pin tables, the full schematic and the timing are on [Hardware](hardware.md).
+
+## Quick start
+
+Wire the part as above, write the port for your MCU ([Porting](porting.md)), then:
+
+<!-- generated: quickstart-code -->
+```cpp
+#include "ntc_thermistor.hpp"
+#include "ntc_thermistor_presets.hpp"
+
+// A 10 kOhm / B 3950 thermistor low-side in a 10 kOhm divider on a 12-bit ADC,
+// valid from -40 to +125 degC.
+constexpr ntc_thermistor::Config kConfig{.curve = ntc_thermistor::presets::kGeneric10kB3950,
+                                         .min_temperature_mc = -40'000,
+                                         .max_temperature_mc = 125'000};
+
+int read_temperature_mc(MyPort& port, int32_t& milli_celsius) {
+  ntc_thermistor::NtcThermistor<MyPort> sensor(port, kConfig); // no I/O yet
+
+  if (auto r = sensor.EnsureInitialized(); !r) { // 1. check the config, bring the ADC up
+    return static_cast<int>(r.error);            //    InvalidArgument or Bus
+  }
+  const auto t = sensor.Read(); // 2. sample, divider to ohms, curve to temperature
+  if (!t) {
+    return static_cast<int>(t.error); //    OpenCircuit, ShortCircuit, BelowRange, ...
+  }
+  milli_celsius = t.value.temperature_mc; // 3. milli-degrees Celsius;
+                                          // t.value.uncertainty_mc bounds it
+  return 0;
+}
+```
+<!-- /generated -->
+
+Every step, with the port and what to check when it does not work: [Quickstart](quickstart.md).
 
 ## Driver coverage
 

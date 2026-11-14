@@ -57,8 +57,10 @@ overview:
     and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature
   category: NTC thermistor
   ref: model
+  inside: part  # a thermistor is a part, not a chip or a device
+  applications_ref: ex_cover
   applications:
-    - {label: Temperature protection, detail: "what the datasheet of the example part calls it", ref: ex_cover}
+    - {label: Temperature protection, detail: "what the datasheet of the example part calls it"}
   specs:
     - {value: "10 kΩ", label: "resistance at 25 °C, ±1 % (the example part)", ref: ex_elec}
     - {value: "3435 K", label: "B value at 25/85 °C, ±1 % (the example part)", ref: ex_elec}
