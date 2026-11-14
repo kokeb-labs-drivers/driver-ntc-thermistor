@@ -26,6 +26,9 @@ refs:
   families: {doc: beta, section: "Chip and bead NTC families (typical sizes)", page: 1}
   divider: {doc: beta, section: "Divider, V = V_s R_n / (R_s + R_n)", page: 1}
   model: {doc: beta, section: "Beta parameter model; Steinhart-Hart equation", page: 1}
+  heating: {doc: beta, section: "Dissipated power, P = V_s^2 R_n / (R_s + R_n)^2", page: 1}
+  ex_cover: {doc: ds, section: "Title", page: 1}
+  ex_elec: {doc: ds, section: "Electrical Characteristics", page: 1}
 
 package:
   type: "0603"
@@ -43,6 +46,62 @@ package:
        ref: families}
     - {id: bead, type: radial-bead, pins: 2, size: "glass bead or epoxy-coated disc on two leads", note: "typical, not a datasheet claim",
        ref: families}
+
+# The chip-first README: what the part is and does, where it is used, how the driver covers it. `kokeb-docs figures`
+# draws chip-hero and chip-capabilities from it, `kokeb-docs gen` the README's chip-summary, chip-uses and
+# chip-coverage regions. The driver is generic, so the facts about an NTC thermistor cite the `beta` reference; the
+# headline numbers are those of the one datasheet in docs/datasheets.yml, the example part. No bus, so no frames.
+overview:
+  summary: >-
+    a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read,
+    and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature
+  category: NTC thermistor
+  ref: model
+  applications:
+    - {label: Temperature protection, detail: "what the datasheet of the example part calls it", ref: ex_cover}
+  specs:
+    - {value: "10 kΩ", label: "resistance at 25 °C, ±1 % (the example part)", ref: ex_elec}
+    - {value: "3435 K", label: "B value at 25/85 °C, ±1 % (the example part)", ref: ex_elec}
+    - {value: "-40 to 150 °C", label: "operating temperature (the example part)", ref: ex_elec}
+    - {value: "0.31 mA", label: "permissive operating current at 25 °C (the example part)", ref: ex_elec}
+  system:
+    host: MCU
+    bus: ADC input
+    senses:
+      - {label: Temperature, detail: "the resistance falls as the part heats", ref: model,
+         unverified: "general behaviour of an NTC thermistor, from the public reference, not a vendor claim"}
+
+# Headers the capability `api` names are checked against.
+driver:
+  api: [inc/ntc_thermistor.hpp, inc/ntc_thermistor_types.hpp, inc/ntc_thermistor_conversion.hpp,
+        inc/ntc_thermistor_presets.hpp, inc/ntc_thermistor_adc_interface.hpp]
+
+capabilities:
+  - {id: divider, title: Voltage divider, icon: analog, status: supported, ref: divider, docs: conversion.md,
+     what: "Turns the voltage at the divider node into the thermistor's resistance, thermistor low side or high side",
+     api: [ReadResistance, Convert, "Topology::NtcLowSide", "Topology::NtcHighSide"]}
+  - {id: beta, title: Beta equation, icon: temperature, status: supported, ref: model, docs: conversion.md,
+     what: "Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare",
+     api: [r0_ohm, b_kelvin, b_t2_mc]}
+  - {id: sh, title: Steinhart-Hart, icon: ramp, status: supported, ref: model, docs: conversion.md,
+     what: "Temperature from the three Steinhart-Hart coefficients, in integers",
+     api: [sh_a_e15, sh_b_e15, sh_c_e15]}
+  - {id: table, title: Resistance table, icon: table, status: supported, ref: model, docs: presets.md,
+     what: "Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data",
+     api: [TablePoint, table, "presets::kTdkNtcg163jf103ft1s"]}
+  - {id: faults, title: "Open, short and range faults", icon: alert, status: supported, ref: divider,
+     what: "Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees",
+     api: ["Error::OpenCircuit", "Error::ShortCircuit", "Error::BelowRange", "Error::AboveRange", "Error::Unstable",
+           "Error::CodeOutOfScale"]}
+  - {id: bound, title: Reading uncertainty, icon: gauge, status: supported, ref: model,
+     what: "Bounds every reading from the tolerances you declare and one converter step",
+     api: [uncertainty_mc, r_tol_ppm, b_tol_ppm, series_tol_ppm]}
+  - {id: heating, title: Self-heating, icon: power, status: supported, ref: heating,
+     what: "Estimates the power the divider dissipates in the thermistor, to size the series resistor",
+     api: [SelfHeatingMicrowatts]}
+  - {id: bias, title: Switched bias, icon: sleep, status: supported, ref: divider, docs: hardware.md,
+     what: "Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating",
+     api: [SetBias, settle_us]}
 
 hooks:
   - {id: read, call: "ReadRaw()", kind: other, source: inc/ntc_thermistor_adc_interface.hpp, symbol: ReadRaw}
