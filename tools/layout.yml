@@ -1,0 +1,4 @@
+header_only:
+  ntc_thermistor_conversion: constants and inline or constexpr functions only, nothing to compile separately
+  ntc_thermistor_math: constants and inline or constexpr functions only, nothing to compile separately
+  ntc_thermistor_presets: constants and inline or constexpr functions only, nothing to compile separately
