@@ -100,72 +100,6 @@
   <meta property="og:description" content="C++20 driver for NTC thermistors read through a resistor divider into an ADC port.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-ntc-thermistor/latest/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -537,6 +471,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the part
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -574,6 +574,8 @@
   
     
     
+      
+        
       
         
       
@@ -861,6 +863,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-part" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the part
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -918,21 +986,216 @@ milli-degrees Celsius with integers only.</p>
 <a class="md-button" href="api-guide/">API guide</a>
 <a class="md-button" href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor">Source on GitHub</a></p>
 </div>
+<!-- generated: chip-summary -->
+<p>The <strong>NTC thermistor (generic)</strong> is a resistor whose resistance falls as it heats: with a series resistor it makes a
+voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance
+into a temperature (Beta parameter model; Steinhart-Hart equation, p. 1).</p>
+<!-- /generated -->
+
+<figure class="kb-figure">
+<img src="diagrams/chip-hero.svg#only-light" alt="Overview of the NTC thermistor (generic), a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature. A MCU talks to it over ADC input; it reads back Temperature. Headline figures: 10 kΩ resistance at 25 °C, ±1 % (the example part); 3435 K B value at 25/85 °C, ±1 % (the example part); -40 to 150 °C operating temperature (the example part); 0.31 mA permissive operating current at 25 °C (the example part)." width="1200" height="849"><img src="diagrams/chip-hero.dark.svg#only-dark" alt="Overview of the NTC thermistor (generic), a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature. A MCU talks to it over ADC input; it reads back Temperature. Headline figures: 10 kΩ resistance at 25 °C, ±1 % (the example part); 3435 K B value at 25/85 °C, ±1 % (the example part); -40 to 150 °C operating temperature (the example part); 0.31 mA permissive operating current at 25 °C (the example part)." width="1200" height="849">
+<figcaption>NTC thermistor (generic)</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The NTC thermistor (generic) in the middle, drawn as its 0603 package. On the left the MCU that runs the driver, joined to it by ADC input. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-capabilities.svg#only-light" alt="Capability map of the NTC thermistor (generic): Voltage divider (supported): Turns the voltage at the divider node into the thermistor&#x27;s resistance, thermistor low side or high side; Beta equation (supported): Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare; Steinhart-Hart (supported): Temperature from the three Steinhart-Hart coefficients, in integers; Resistance table (supported): Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data; Open, short and range faults (supported): Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees; Reading uncertainty (supported): Bounds every reading from the tolerances you declare and one converter step; Self-heating (supported): Estimates the power the divider dissipates in the thermistor, to size the series resistor; Switched bias (supported): Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating." width="1200" height="900" loading="lazy"><img src="diagrams/chip-capabilities.dark.svg#only-dark" alt="Capability map of the NTC thermistor (generic): Voltage divider (supported): Turns the voltage at the divider node into the thermistor&#x27;s resistance, thermistor low side or high side; Beta equation (supported): Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare; Steinhart-Hart (supported): Temperature from the three Steinhart-Hart coefficients, in integers; Resistance table (supported): Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data; Open, short and range faults (supported): Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees; Reading uncertainty (supported): Bounds every reading from the tolerances you declare and one converter step; Self-heating (supported): Estimates the power the divider dissipates in the thermistor, to size the series resistor; Switched bias (supported): Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating." width="1200" height="900" loading="lazy">
+<figcaption>What the NTC thermistor (generic) does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the NTC thermistor (generic): an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<h2 id="where-it-is-used">Where it is used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-uses -->
+<ul>
+<li>Temperature protection: what the datasheet of the example part calls it</li>
+</ul>
+<p>Uses named by the datasheet (Title, <a href="https://product.tdk.com/system/files/dam/doc/product/sensor/ntc/chip-ntc-thermistor/data_sheet/datasheet_ntcg163jf103ft1s.pdf#page=1">p.
+1</a>).</p>
+<!-- /generated -->
+
+<h2 id="inside-the-part">Inside the part<a class="headerlink" href="#inside-the-part" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-blocks.svg#only-light" alt="Block diagram of the NTC thermistor (generic): its function blocks, how they connect and which package pins reach each block." width="1200" height="433" loading="lazy"><img src="diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the NTC thermistor (generic): its function blocks, how they connect and which package pins reach each block." width="1200" height="433" loading="lazy">
+<figcaption>Inside the NTC thermistor (generic)</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The NTC thermistor (generic)'s function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<h2 id="pins-and-wiring">Pins and wiring<a class="headerlink" href="#pins-and-wiring" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-pinout.svg#only-light" alt="Pinout of the NTC thermistor (generic) in 0603, top view: 2 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="760" height="485" loading="lazy"><img src="diagrams/chip-pinout.dark.svg#only-dark" alt="Pinout of the NTC thermistor (generic) in 0603, top view: 2 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="760" height="485" loading="lazy">
+<figcaption>NTC thermistor (generic) pinout, 0603</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The NTC thermistor (generic) seen from the top, in its 0603 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-divider.svg#only-light" alt="Wiring of the NTC thermistor (generic) for the Low-side divider: MCU ADC input to T1 (ReadRaw()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="634" loading="lazy"><img src="diagrams/chip-wiring-divider.dark.svg#only-dark" alt="Wiring of the NTC thermistor (generic) for the Low-side divider: MCU ADC input to T1 (ReadRaw()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="634" loading="lazy">
+<figcaption>Wiring: Low-side divider</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the NTC thermistor (generic) in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-divider-high.svg#only-light" alt="Wiring of the NTC thermistor (generic) for the High-side divider: MCU ADC input to T2. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="612" loading="lazy"><img src="diagrams/chip-wiring-divider-high.dark.svg#only-dark" alt="Wiring of the NTC thermistor (generic) for the High-side divider: MCU ADC input to T2. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="612" loading="lazy">
+<figcaption>Wiring: High-side divider</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the NTC thermistor (generic) in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-outline.svg#only-light" alt="Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins." width="760" height="749" loading="lazy"><img src="diagrams/chip-outline.dark.svg#only-dark" alt="Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins." width="760" height="749" loading="lazy">
+<figcaption>NTC thermistor (generic) package, 0603</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The NTC thermistor (generic) package seen from the top and, when the height is known, from the side, drawn to scale: 1.6 x 0.8 x 0.8 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<p>The pin tables, the full schematic and the timing are on <a href="hardware/">Hardware</a>.</p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Wire the part as above, write the port for your MCU (<a href="porting/">Porting</a>), then:</p>
+<!-- generated: quickstart-code -->
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"ntc_thermistor.hpp"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"ntc_thermistor_presets.hpp"</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// A 10 kOhm / B 3950 thermistor low-side in a 10 kOhm divider on a 12-bit ADC,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// valid from -40 to +125 degC.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">ntc_thermistor</span><span class="o">::</span><span class="n">Config</span><span class="w"> </span><span class="n">kConfig</span><span class="p">{.</span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ntc_thermistor</span><span class="o">::</span><span class="n">presets</span><span class="o">::</span><span class="n">kGeneric10kB3950</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">                                         </span><span class="p">.</span><span class="n">min_temperature_mc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-40'000</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">                                         </span><span class="p">.</span><span class="n">max_temperature_mc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">125'000</span><span class="p">};</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kt">int</span><span class="w"> </span><span class="nf">read_temperature_mc</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&amp;</span><span class="w"> </span><span class="n">milli_celsius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">ntc_thermistor</span><span class="o">::</span><span class="n">NtcThermistor</span><span class="o">&lt;</span><span class="n">MyPort</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor</span><span class="p">(</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">kConfig</span><span class="p">);</span><span class="w"> </span><span class="c1">// no I/O yet</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 1. check the config, bring the ADC up</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w">            </span><span class="c1">//    InvalidArgument or Bus</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">Read</span><span class="p">();</span><span class="w"> </span><span class="c1">// 2. sample, divider to ohms, curve to temperature</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    OpenCircuit, ShortCircuit, BelowRange, ...</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="n">milli_celsius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">temperature_mc</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3. milli-degrees Celsius;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">                                          </span><span class="c1">// t.value.uncertainty_mc bounds it</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
+</span></code></pre></div>
+<!-- /generated -->
+
+<p>Every step, with the port and what to check when it does not work: <a href="quickstart/">Quickstart</a>.</p>
+<h2 id="driver-coverage">Driver coverage<a class="headerlink" href="#driver-coverage" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-coverage -->
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What the chip does</th>
+<th>Driver API</th>
+<th>Registers</th>
+<th>Status</th>
+<th>Datasheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="conversion/">Voltage divider</a></td>
+<td>Turns the voltage at the divider node into the thermistor's resistance, thermistor low side or high side</td>
+<td><code>ReadResistance</code>, <code>Convert</code>, <code>Topology::NtcLowSide</code>, <code>Topology::NtcHighSide</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Divider, V = V_s R_n / (R_s + R_n), p. 1</td>
+</tr>
+<tr>
+<td><a href="conversion/">Beta equation</a></td>
+<td>Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare</td>
+<td><code>r0_ohm</code>, <code>b_kelvin</code>, <code>b_t2_mc</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Beta parameter model; Steinhart-Hart equation, p. 1</td>
+</tr>
+<tr>
+<td><a href="conversion/">Steinhart-Hart</a></td>
+<td>Temperature from the three Steinhart-Hart coefficients, in integers</td>
+<td><code>sh_a_e15</code>, <code>sh_b_e15</code>, <code>sh_c_e15</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Beta parameter model; Steinhart-Hart equation, p. 1</td>
+</tr>
+<tr>
+<td><a href="presets/">Resistance table</a></td>
+<td>Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data</td>
+<td><code>TablePoint</code>, <code>table</code>, <code>presets::kTdkNtcg163jf103ft1s</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Beta parameter model; Steinhart-Hart equation, p. 1</td>
+</tr>
+<tr>
+<td>Open, short and range faults</td>
+<td>Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees</td>
+<td><code>Error::OpenCircuit</code>, <code>Error::ShortCircuit</code>, <code>Error::BelowRange</code>, <code>Error::AboveRange</code>, <code>Error::Unstable</code>, <code>Error::CodeOutOfScale</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Divider, V = V_s R_n / (R_s + R_n), p. 1</td>
+</tr>
+<tr>
+<td>Reading uncertainty</td>
+<td>Bounds every reading from the tolerances you declare and one converter step</td>
+<td><code>uncertainty_mc</code>, <code>r_tol_ppm</code>, <code>b_tol_ppm</code>, <code>series_tol_ppm</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Beta parameter model; Steinhart-Hart equation, p. 1</td>
+</tr>
+<tr>
+<td>Self-heating</td>
+<td>Estimates the power the divider dissipates in the thermistor, to size the series resistor</td>
+<td><code>SelfHeatingMicrowatts</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Dissipated power, P = V_s^2 R_n / (R_s + R_n)^2, p. 1</td>
+</tr>
+<tr>
+<td><a href="hardware/">Switched bias</a></td>
+<td>Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating</td>
+<td><code>SetBias</code>, <code>settle_us</code></td>
+<td>-</td>
+<td>Supported</td>
+<td>Divider, V = V_s R_n / (R_s + R_n), p. 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported</strong>: the driver covers it and a host test checks it.</p>
+<p>From <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <code>kokeb-docs hardware --check</code> confirms that every API name is in
+<code>inc/ntc_thermistor.hpp</code>, <code>inc/ntc_thermistor_types.hpp</code>, <code>inc/ntc_thermistor_conversion.hpp</code>,
+<code>inc/ntc_thermistor_presets.hpp</code>, <code>inc/ntc_thermistor_adc_interface.hpp</code>.</p>
+<!-- /generated -->
+
 <p>The driver knows no part. A thermistor is <strong>data</strong>: a table of resistance and temperature rows, Steinhart-Hart
 coefficients, or R25 and B for the beta equation, given in a <code>Curve</code>. The driver reads the divider node through a small
 port class you write, finds the thermistor's resistance, and looks the temperature up on the curve. Open and short
 circuits, a node outside the
 ADC's range and a part outside its rated window are errors with their own names, and every reading carries a bound.</p>
-<div class="kb-chip">
-<div class="kb-chip__head">
-<span class="kb-chip__kicker">Temperature sensor, two terminals</span>
-<span class="kb-chip__name">NTC thermistor</span>
-<span class="kb-chip__vendor">Any maker: the part is data</span>
-</div>
-<p>Measures :   Temperature from the curve you declare, as milli-degrees Celsius</p>
-<p>Interface :   A voltage divider into one ADC channel; optionally a GPIO that powers the divider only while it is read</p>
-<p>Arithmetic :   Integers only: ohms, milli-degrees, millivolts, parts per million; no floating point, no library calls</p>
-</div>
 <h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Any NTC, no change of code.</strong> A part is a <code>Curve</code>; the driver ships two presets and the way to write your own.

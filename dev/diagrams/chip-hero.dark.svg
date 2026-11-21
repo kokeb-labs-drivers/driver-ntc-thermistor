@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="849" viewBox="0 0 1200 849" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-hero-title">NTC thermistor (generic)</title>
+<desc id="chip-hero-desc">Overview of the NTC thermistor (generic), a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature. A MCU talks to it over ADC input; it reads back Temperature. Headline figures: 10 kΩ resistance at 25 °C, ±1 % (the example part); 3435 K B value at 25/85 °C, ±1 % (the example part); -40 to 150 °C operating temperature (the example part); 0.31 mA permissive operating current at 25 °C (the example part).</desc>
+<defs><marker id="fk-arrow-amber-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FBBF24"/></marker><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60A5FA"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="848" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">NTC THERMISTOR</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">NTC thermistor (generic)</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">What talks to it, what it drives and what it reads back, with its headline numbers. Datasheet: Beta parameter model;</text>
+<text x="32" y="141.5" font-size="18" fill="#9AA6B5">Steinhart-Hart equation, p. 1.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#252F3C"/>
+<path d="M246 288.5 L377 288.5" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)" marker-start="url(#fk-arrow-blue-strong)"/>
+<path d="M508 453.5 L508 397.5" fill="none" stroke="#FBBF24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-amber-strong)"/>
+<rect x="381" y="285" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="623" y="285" width="12" height="7" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.2"/>
+<rect x="393" y="183.5" width="230" height="210" rx="10" fill="#18202B" stroke="#D2DAE4" stroke-width="2.2"/>
+<circle cx="413" cy="203.5" r="6" fill="#D2DAE4"/>
+<rect x="32" y="231.5" width="210" height="114" rx="12" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="239.5" width="4" height="98" rx="2" fill="#60A5FA"/>
+<rect x="328" y="457.5" width="360" height="114" rx="12" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="328" y="465.5" width="4" height="98" rx="2" fill="#FBBF24"/>
+<rect x="32" y="611.5" width="272" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="320" y="611.5" width="272" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="608" y="611.5" width="272" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="896" y="611.5" width="272" height="176.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<text x="508" y="254.9" font-size="24" font-weight="700" text-anchor="middle" fill="#E8EDF3">NTC thermistor</text>
+<text x="508" y="282.5" font-size="24" font-weight="700" text-anchor="middle" fill="#E8EDF3">(generic)</text>
+<text x="508" y="312.5" font-size="17" text-anchor="middle" fill="#9AA6B5">0603</text>
+<text x="508" y="336.5" font-size="16" text-anchor="middle" fill="#9AA6B5">2 pins</text>
+<text x="56" y="266.5" font-size="20" font-weight="700" fill="#BFDBFE">MCU</text>
+<text x="56" y="297.1" font-size="17" fill="#D2DAE4">your firmware and</text>
+<text x="56" y="321.8" font-size="17" fill="#D2DAE4">this driver</text>
+<rect x="264.4" y="276.5" width="94.2" height="24" rx="12" fill="#0E131A"/>
+<text x="311.5" y="294.3" font-size="16" font-weight="500" text-anchor="middle" fill="#9AA6B5">ADC input</text>
+<text x="352" y="492.5" font-size="20" font-weight="700" fill="#FDE68A">Reads back</text>
+<text x="352" y="523.1" font-size="17" fill="#D2DAE4">Temperature (the resistance falls as</text>
+<text x="352" y="547.8" font-size="17" fill="#D2DAE4">the part heats)*</text>
+<text x="48" y="659.5" font-size="30" font-weight="700" fill="#E8EDF3">10 kΩ</text>
+<text x="48" y="689.1" font-size="17" fill="#D2DAE4">resistance at 25 °C, ±1 %</text>
+<text x="48" y="712.1" font-size="17" fill="#D2DAE4">(the example part)</text>
+<text x="48" y="770.4" font-size="16" fill="#9AA6B5">Electrical Characteristics, p. 1</text>
+<text x="336" y="659.5" font-size="30" font-weight="700" fill="#E8EDF3">3435 K</text>
+<text x="336" y="689.1" font-size="17" fill="#D2DAE4">B value at 25/85 °C, ±1 %</text>
+<text x="336" y="712.1" font-size="17" fill="#D2DAE4">(the example part)</text>
+<text x="336" y="770.4" font-size="16" fill="#9AA6B5">Electrical Characteristics, p. 1</text>
+<text x="624" y="659.5" font-size="30" font-weight="700" fill="#E8EDF3">-40 to 150 °C</text>
+<text x="624" y="689.1" font-size="17" fill="#D2DAE4">operating temperature (the</text>
+<text x="624" y="712.1" font-size="17" fill="#D2DAE4">example part)</text>
+<text x="624" y="770.4" font-size="16" fill="#9AA6B5">Electrical Characteristics, p. 1</text>
+<text x="912" y="659.5" font-size="30" font-weight="700" fill="#E8EDF3">0.31 mA</text>
+<text x="912" y="689.1" font-size="17" fill="#D2DAE4">permissive operating</text>
+<text x="912" y="712.1" font-size="17" fill="#D2DAE4">current at 25 °C (the</text>
+<text x="912" y="735" font-size="17" fill="#D2DAE4">example part)</text>
+<text x="912" y="770.4" font-size="16" fill="#9AA6B5">Electrical Characteristics, p. 1</text>
+<text x="32" y="813.9" font-size="16" fill="#9AA6B5">* Not confirmed in the datasheet: Temperature: general behaviour of an NTC thermistor, from the public reference, not a vendor claim.</text>
+</svg>

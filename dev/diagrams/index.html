@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for NTC thermistors read through a resistor divider into an ADC port.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-ntc-thermistor/latest/diagrams/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -505,6 +439,8 @@
   
     
     
+      
+        
       
         
       
@@ -963,6 +899,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-the-ntc-thermistor-generic-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the NTC thermistor (generic) does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ntc-thermistor-generic-low-side-divider" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -985,6 +932,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ntc-thermistor-generic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NTC thermistor (generic)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ntc-thermistor-generic-package-0603" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1000,6 +958,28 @@
     <span class="md-ellipsis">
       
         NTC thermistor (generic) pinout, 0603
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-low-side-divider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Low-side divider
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-high-side-divider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: High-side divider
       
     </span>
   </a>
@@ -1068,14 +1048,32 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic)'s function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+</ul>
+<h2 id="what-the-ntc-thermistor-generic-does">What the NTC thermistor (generic) does<a class="headerlink" href="#what-the-ntc-thermistor-generic-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-capabilities.svg#only-light" alt="Capability map of the NTC thermistor (generic): Voltage divider (supported): Turns the voltage at the divider node into the thermistor&#x27;s resistance, thermistor low side or high side; Beta equation (supported): Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare; Steinhart-Hart (supported): Temperature from the three Steinhart-Hart coefficients, in integers; Resistance table (supported): Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data; Open, short and range faults (supported): Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees; Reading uncertainty (supported): Bounds every reading from the tolerances you declare and one converter step; Self-heating (supported): Estimates the power the divider dissipates in the thermistor, to size the series resistor; Switched bias (supported): Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating." width="1200" height="900" loading="lazy"><img src="chip-capabilities.dark.svg#only-dark" alt="Capability map of the NTC thermistor (generic): Voltage divider (supported): Turns the voltage at the divider node into the thermistor&#x27;s resistance, thermistor low side or high side; Beta equation (supported): Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare; Steinhart-Hart (supported): Temperature from the three Steinhart-Hart coefficients, in integers; Resistance table (supported): Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data; Open, short and range faults (supported): Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees; Reading uncertainty (supported): Bounds every reading from the tolerances you declare and one converter step; Self-heating (supported): Estimates the power the divider dissipates in the thermistor, to size the series resistor; Switched bias (supported): Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating." width="1200" height="900" loading="lazy">
+<figcaption>What the NTC thermistor (generic) does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the NTC thermistor (generic): an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
 </ul>
 <h2 id="ntc-thermistor-generic-low-side-divider">NTC thermistor (generic): Low-side divider<a class="headerlink" href="#ntc-thermistor-generic-low-side-divider" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1086,14 +1084,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
 </ul>
 <h2 id="ntc-thermistor-generic-high-side-divider">NTC thermistor (generic): High-side divider<a class="headerlink" href="#ntc-thermistor-generic-high-side-divider" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1104,14 +1102,32 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+</ul>
+<h2 id="ntc-thermistor-generic">NTC thermistor (generic)<a class="headerlink" href="#ntc-thermistor-generic" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-hero.svg#only-light" alt="Overview of the NTC thermistor (generic), a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature. A MCU talks to it over ADC input; it reads back Temperature. Headline figures: 10 kΩ resistance at 25 °C, ±1 % (the example part); 3435 K B value at 25/85 °C, ±1 % (the example part); -40 to 150 °C operating temperature (the example part); 0.31 mA permissive operating current at 25 °C (the example part)." width="1200" height="849" loading="lazy"><img src="chip-hero.dark.svg#only-dark" alt="Overview of the NTC thermistor (generic), a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature. A MCU talks to it over ADC input; it reads back Temperature. Headline figures: 10 kΩ resistance at 25 °C, ±1 % (the example part); 3435 K B value at 25/85 °C, ±1 % (the example part); -40 to 150 °C operating temperature (the example part); 0.31 mA permissive operating current at 25 °C (the example part)." width="1200" height="849" loading="lazy">
+<figcaption>NTC thermistor (generic)</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The NTC thermistor (generic) in the middle, drawn as its 0603 package. On the left the MCU that runs the driver, joined to it by ADC input. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
 </ul>
 <h2 id="ntc-thermistor-generic-package-0603">NTC thermistor (generic) package, 0603<a class="headerlink" href="#ntc-thermistor-generic-package-0603" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1122,14 +1138,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic) package seen from the top and, when the height is known, from the side, drawn to scale: 1.6 x 0.8 x 0.8 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
 </ul>
 <h2 id="ntc-thermistor-generic-pinout-0603">NTC thermistor (generic) pinout, 0603<a class="headerlink" href="#ntc-thermistor-generic-pinout-0603" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1140,14 +1156,50 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic) seen from the top, in its 0603 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-low-side-divider">Wiring: Low-side divider<a class="headerlink" href="#wiring-low-side-divider" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-divider.svg#only-light" alt="Wiring of the NTC thermistor (generic) for the Low-side divider: MCU ADC input to T1 (ReadRaw()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="634" loading="lazy"><img src="chip-wiring-divider.dark.svg#only-dark" alt="Wiring of the NTC thermistor (generic) for the Low-side divider: MCU ADC input to T1 (ReadRaw()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="634" loading="lazy">
+<figcaption>Wiring: Low-side divider</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the NTC thermistor (generic) in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-high-side-divider">Wiring: High-side divider<a class="headerlink" href="#wiring-high-side-divider" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-divider-high.svg#only-light" alt="Wiring of the NTC thermistor (generic) for the High-side divider: MCU ADC input to T2. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="612" loading="lazy"><img src="chip-wiring-divider-high.dark.svg#only-dark" alt="Wiring of the NTC thermistor (generic) for the High-side divider: MCU ADC input to T2. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="612" loading="lazy">
+<figcaption>Wiring: High-side divider</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the NTC thermistor (generic) in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
 </ul>
 <h2 id="from-an-adc-code-to-a-temperature">From an ADC code to a temperature<a class="headerlink" href="#from-an-adc-code-to-a-temperature" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1158,14 +1210,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow hands one number to the next stage. Read() takes sample_count codes and their mean (the spread check can stop it as Unstable). The mean code is classified: at or above 2^bits is CodeOutOfScale, a code in the margin at the open rail is OpenCircuit, one in the margin at the short rail is ShortCircuit; which rail is which depends on the divider side. The node ratio gives the thermistor's resistance from the series resistor, in 1/256 ohm. The resistance goes through the curve: a table (a bounded binary search, then linear interpolation in ln R) or Steinhart-Hart (a cubic in ln R) or the beta equation (1/T in Q32), any of them with no floating point and no library. The temperature must lie inside the window; the offset is added last. The uncertainty bound is computed from the same code. The stages are the functions of inc/ntc_thermistor_conversion.hpp.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>ConvertCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>FineOfCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>CurveTemperature()</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/docs/diagrams/figures/conversion-pipeline.py"><code>docs/diagrams/figures/conversion-pipeline.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>ConvertCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>FineOfCode()</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a> <code>CurveTemperature()</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/docs/diagrams/figures/conversion-pipeline.py"><code>docs/diagrams/figures/conversion-pipeline.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/docs/diagrams/figures/conversion-pipeline.py"><code>docs/diagrams/figures/conversion-pipeline.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/docs/diagrams/figures/conversion-pipeline.py"><code>docs/diagrams/figures/conversion-pipeline.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>ConvertCode()</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></li>
-<li><code>FineOfCode()</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></li>
-<li><code>CurveTemperature()</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></li>
+<li><code>ConvertCode()</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></li>
+<li><code>FineOfCode()</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></li>
+<li><code>CurveTemperature()</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_conversion.hpp"><code>inc/ntc_thermistor_conversion.hpp</code></a></li>
 </ul>
 <h2 id="the-layers-one-of-them-yours">The layers, one of them yours<a class="headerlink" href="#the-layers-one-of-them-yours" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1176,13 +1228,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a> <code>AdcInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a> <code>AdcInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
-<li><code>AdcInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
+<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a></li>
+<li><code>AdcInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a></li>
 </ul>
 
 

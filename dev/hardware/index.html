@@ -16,7 +16,7 @@
         <link rel="prev" href="../platforms/">
       
       
-        <link rel="next" href="../conversion/">
+        <link rel="next" href="../bus/">
       
       
         
@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for NTC thermistors read through a resistor divider into an ADC port.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-ntc-thermistor/latest/hardware/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -518,6 +452,8 @@
       
         
       
+        
+      
     
     
     
@@ -821,6 +757,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    On the bus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1272,7 +1236,7 @@ diagram and the two circuits below are drawn from <a href="../hardware.yml"><cod
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic) seen from the top, in its 0603 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <figure class="kb-figure">
 <img src="../diagrams/chip-outline.svg#only-light" alt="Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins." width="760" height="749" loading="lazy"><img src="../diagrams/chip-outline.dark.svg#only-dark" alt="Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins." width="760" height="749" loading="lazy">
@@ -1282,7 +1246,7 @@ diagram and the two circuits below are drawn from <a href="../hardware.yml"><cod
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic) package seen from the top and, when the height is known, from the side, drawn to scale: 1.6 x 0.8 x 0.8 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-pins -->
 <p>0603, 2 pins (Chip and bead NTC families (typical sizes), p. 1).</p>
@@ -1327,7 +1291,7 @@ diagram and the two circuits below are drawn from <a href="../hardware.yml"><cod
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The NTC thermistor (generic)'s function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <h2 id="the-divider">The divider<a class="headerlink" href="#the-divider" title="Permanent link">&para;</a></h2>
 <p>The driver reads the node of a resistor divider. In <strong>low-side</strong> form (the thermistor to ground) the node falls as
@@ -1340,7 +1304,7 @@ the part heats; in <strong>high-side</strong> form (the thermistor to the supply
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <figure class="kb-figure">
 <img src="../diagrams/chip-circuit-divider-high.svg#only-light" alt="Schematic of the NTC thermistor (generic) high-side divider: the chip with U2 MCU, R1 resistor 10 kΩ, C1 capacitor 100 nF; the MCU wires carry the port hooks ReadRaw()." width="840" height="463" loading="lazy"><img src="../diagrams/chip-circuit-divider-high.dark.svg#only-dark" alt="Schematic of the NTC thermistor (generic) high-side divider: the chip with U2 MCU, R1 resistor 10 kΩ, C1 capacitor 100 nF; the MCU wires carry the port hooks ReadRaw()." width="840" height="463" loading="lazy">
@@ -1350,7 +1314,7 @@ the part heats; in <strong>high-side</strong> form (the thermistor to the supply
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/d1ec77810c16dfe52c7bc36890471f321750c8dd/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor.hpp"><code>inc/ntc_thermistor.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ntc-thermistor/blob/6fb41704cfa92d0f698cfade7f77f79ac48a64b6/inc/ntc_thermistor_adc_interface.hpp"><code>inc/ntc_thermistor_adc_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-parts -->
 <p><strong>Low-side divider</strong> (figure <code>chip-circuit-divider</code>)</p>
@@ -1621,13 +1585,13 @@ channel in your application.</p>
         
         
           
-          <a href="../conversion/" class="md-footer__link md-footer__link--next" aria-label="Next: Conversion">
+          <a href="../bus/" class="md-footer__link md-footer__link--next" aria-label="Next: On the bus">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Conversion
+                On the bus
               </div>
             </div>
             <div class="md-footer__button md-icon">
