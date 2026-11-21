@@ -12,6 +12,19 @@
       "inc/ntc_thermistor_adc_interface.hpp"
     ]
   },
+  "chip-capabilities": {
+    "title": "What the NTC thermistor (generic) does",
+    "alt": "Capability map of the NTC thermistor (generic): Voltage divider (supported): Turns the voltage at the divider node into the thermistor's resistance, thermistor low side or high side; Beta equation (supported): Temperature from R25 and B (B25/85 by default), in fixed point, inside the rated window you declare; Steinhart-Hart (supported): Temperature from the three Steinhart-Hart coefficients, in integers; Resistance table (supported): Temperature from a table of resistance and temperature rows, interpolated in ln R; any part is data; Open, short and range faults (supported): Names a cut wire, a short, a part outside its window, noisy samples and an ADC that disagrees; Reading uncertainty (supported): Bounds every reading from the tolerances you declare and one converter step; Self-heating (supported): Estimates the power the divider dissipates in the thermistor, to size the series resistor; Switched bias (supported): Switches the divider supply from an MCU pin and waits for it to settle, to cut current and self-heating.",
+    "description": "Each card is one function of the NTC thermistor (generic): an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ntc_thermistor.hpp",
+      "inc/ntc_thermistor_adc_interface.hpp"
+    ]
+  },
   "chip-circuit-divider": {
     "title": "NTC thermistor (generic): Low-side divider",
     "alt": "Schematic of the NTC thermistor (generic) low-side divider: the chip with U2 MCU, R1 resistor 10 kΩ, C1 capacitor 100 nF; the MCU wires carry the port hooks ReadRaw().",
@@ -38,6 +51,19 @@
       "inc/ntc_thermistor_adc_interface.hpp"
     ]
   },
+  "chip-hero": {
+    "title": "NTC thermistor (generic)",
+    "alt": "Overview of the NTC thermistor (generic), a resistor whose resistance falls as it heats: with a series resistor it makes a voltage divider an ADC can read, and a curve (a table, Steinhart-Hart coefficients, or R25 and B) turns the resistance into a temperature. A MCU talks to it over ADC input; it reads back Temperature. Headline figures: 10 kΩ resistance at 25 °C, ±1 % (the example part); 3435 K B value at 25/85 °C, ±1 % (the example part); -40 to 150 °C operating temperature (the example part); 0.31 mA permissive operating current at 25 °C (the example part).",
+    "description": "The NTC thermistor (generic) in the middle, drawn as its 0603 package. On the left the MCU that runs the driver, joined to it by ADC input. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ntc_thermistor.hpp",
+      "inc/ntc_thermistor_adc_interface.hpp"
+    ]
+  },
   "chip-outline": {
     "title": "NTC thermistor (generic) package, 0603",
     "alt": "Outline of the NTC thermistor (generic) in 0603 drawn to scale from above: body 1.6 x 0.8 x 0.8 mm, 2 pins.",
@@ -57,6 +83,32 @@
     "description": "The NTC thermistor (generic) seen from the top, in its 0603 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.",
     "profile": "detail",
     "width": 760,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ntc_thermistor.hpp",
+      "inc/ntc_thermistor_adc_interface.hpp"
+    ]
+  },
+  "chip-wiring-divider": {
+    "title": "Wiring: Low-side divider",
+    "alt": "Wiring of the NTC thermistor (generic) for the Low-side divider: MCU ADC input to T1 (ReadRaw()). Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the NTC thermistor (generic) in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ntc_thermistor.hpp",
+      "inc/ntc_thermistor_adc_interface.hpp"
+    ]
+  },
+  "chip-wiring-divider-high": {
+    "title": "Wiring: High-side divider",
+    "alt": "Wiring of the NTC thermistor (generic) for the High-side divider: MCU ADC input to T2. Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the NTC thermistor (generic) in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
     "source": "docs/hardware.yml",
     "sources": [
       "docs/hardware.yml",
